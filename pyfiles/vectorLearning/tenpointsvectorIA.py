@@ -10,7 +10,8 @@ validate_folder_name = 'test'
 labels = ['ASC','DESC']
 
 def format_vector(vector):
-	return (np.array(vector)/np.max(vector)).tolist()
+	f_vector = np.array(vector)-np.min(vector)
+	return (f_vector/np.max(f_vector)).tolist()
 
 def format_label(label):
 	return (0 if label==labels[0] else 1)
@@ -19,39 +20,41 @@ def format_label(label):
 # a softmax layer with 2 output units:
 model = tf.keras.models.Sequential([
   tf.keras.layers.Dense(16, activation='relu'),
-  tf.keras.layers.Dense(2, activation='softmax')
+  tf.keras.layers.Dense(len(labels), activation='sigmoid')
 ])
 
-model.compile(optimizer='adam',
-              loss='categorical_crossentropy',
-              metrics=['accuracy'])
+model.compile(optimizer=tf.keras.optimizers.RMSprop(),
+              loss=tf.keras.losses.SparseCategoricalCrossentropy(),
+              metrics=[tf.keras.metrics.SparseCategoricalAccuracy()])
 
-# Creating training dataset (500 vectors to learn)
-tpvg.generateVectors(500,learn_folder_name)
+# Creating training dataset (2000 vectors to learn)
+tpvg.generateVectors(2000,learn_folder_name)
 veclabs = tpvr.readAllCSVfromFolder(learn_folder_name)
 
-x_train, y_train = [], []
+ex_train, lab_train = [], []
 for sample in veclabs:
-	x_train.append(format_vector(sample[1]))
-	y_train.append(format_label(sample[0]))
-x_train = np.array(x_train)
-y_train = np.array(y_train)
+	ex_train.append(format_vector(sample[1]))
+	lab_train.append(format_label(sample[0]))
+ex_train = np.array(ex_train)
+lab_train = np.array(lab_train)
 
-# Creating test dataset (50 tests)
-tpvg.generateVectors(50,validate_folder_name)
+# Creating test dataset (500 tests)
+tpvg.generateVectors(500,validate_folder_name)
 veclabs = tpvr.readAllCSVfromFolder(validate_folder_name)
 
-x_test, y_test = [], []
+ex_test, lab_test = [], []
 for sample in veclabs:
-	x_test.append(format_vector(sample[1]))
-	y_test.append(format_label(sample[0]))
-x_test = np.array(x_test)
-y_test = np.array(y_test)
-
-print(x_test)
+	ex_test.append(format_vector(sample[1]))
+	lab_test.append(format_label(sample[0]))
+ex_test = np.array(ex_test)
+lab_test = np.array(lab_test)
 
 # Training
-model.fit(x_train, y_train, epochs=10)
+model.fit(ex_train, lab_train, epochs=13)
 
 # Evaluate
-model.evaluate(x_test, y_test, verbose=2)
+model.evaluate(ex_test, lab_test, verbose=2)
+print("Test with one vector of the set:")
+print(np.array([ex_test[0]]))
+print(model.predict(np.array([ex_test[0]])))
+print(labels[np.argmax(model.predict(np.array([ex_test[0]])))])
