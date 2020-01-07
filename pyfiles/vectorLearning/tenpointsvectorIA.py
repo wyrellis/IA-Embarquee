@@ -26,7 +26,7 @@ model.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
-# Creating training dataset
+# Creating training dataset (500 vectors to learn)
 tpvg.generateVectors(500,learn_folder_name)
 veclabs = tpvr.readAllCSVfromFolder(learn_folder_name)
 
@@ -37,7 +37,7 @@ for sample in veclabs:
 x_train = np.array(x_train)
 y_train = np.array(y_train)
 
-# Creating validate dataset
+# Creating test dataset (50 tests)
 tpvg.generateVectors(50,validate_folder_name)
 veclabs = tpvr.readAllCSVfromFolder(validate_folder_name)
 
