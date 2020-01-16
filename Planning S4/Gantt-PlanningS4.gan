@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Projet S4" company="" webLink="http://" view-date="2019-12-23" view-index="0" gantt-divider-location="568" resource-divider-location="300" version="2.8.10" locale="fr_FR">
+    <description/>
+    <view zooming-state="default:7" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="394" order="0"/>
+        <field id="tpd4" name="Date de début" width="90" order="1"/>
+        <field id="tpd5" name="Date de fin" width="80" order="2"/>
+        <option id="color.recent"><![CDATA[#ffff66 #99ff00 #ff6600 #ff0099 #6633ff #3399ff]]></option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nom" width="210" order="0"/>
+        <field id="1" name="Rôle par défaut" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars base-id="Aucun">
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="0" mon="0" tue="0" wed="0" thu="0" fri="0" sat="0"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+        <date year="2020" month="2" date="24" type="HOLIDAY"/>
+        <date year="2020" month="2" date="25" type="HOLIDAY"/>
+        <date year="2020" month="2" date="26" type="HOLIDAY"/>
+        <date year="2020" month="2" date="27" type="HOLIDAY"/>
+        <date year="2020" month="2" date="28" type="HOLIDAY"/>
+        <date year="2020" month="2" date="29" type="HOLIDAY"/>
+        <date year="2020" month="3" date="1" type="HOLIDAY"/>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" name="Cycle 1: Installer TensorFlow" color="#3399ff" meeting="false" start="2020-01-07" duration="1" complete="0" thirdDate="2019-12-27" thirdDate-constraint="0" expand="true">
+            <depend id="2" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="2" name="Cycle 1: Recherches IA et réseau de neurones" color="#3399ff" meeting="false" start="2020-01-08" duration="5" complete="0" thirdDate="2019-12-27" thirdDate-constraint="0" expand="true">
+            <depend id="4" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="4" name="Cycle 1: Tester les neurones avec les vecteurs" color="#3399ff" meeting="false" start="2020-01-13" duration="5" complete="0" thirdDate="2020-01-13" thirdDate-constraint="0" expand="true">
+            <depend id="12" type="2" difference="1" hardness="Strong"/>
+        </task>
+        <task id="9" name="Renseignements sur la carte Nucléo" color="#ffff66" meeting="false" start="2020-01-07" duration="6" complete="0" thirdDate="2020-01-07" thirdDate-constraint="0" expand="true">
+            <depend id="10" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="10" name="Renseignements sur STM32Cube" color="#ffff66" meeting="false" start="2020-01-13" duration="9" complete="0" thirdDate="2020-01-13" thirdDate-constraint="0" expand="true">
+            <depend id="11" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="11" name="Renseignements sur le module AI de STM32Cube" color="#ffff66" meeting="false" start="2020-01-22" duration="13" complete="0" thirdDate="2020-01-20" thirdDate-constraint="0" expand="true">
+            <depend id="101" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="12" name="Renseignements sur l'oscilloscope" color="#ffff66" meeting="false" start="2020-01-19" duration="1" complete="0" thirdDate="2020-01-19" thirdDate-constraint="0" expand="true">
+            <depend id="87" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="87" name="Cycle 1 : Fin" color="#3399ff" meeting="true" start="2020-01-20" duration="0" complete="0" thirdDate="2020-01-20" thirdDate-constraint="0" expand="true">
+            <depend id="18" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="18" name="Cycle 2 : Création de courbes (tension/temps)" color="#6633ff" meeting="false" start="2020-01-20" duration="6" complete="0" thirdDate="2020-01-20" thirdDate-constraint="0" expand="true">
+            <depend id="14" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="14" name="Cycle 2 : Conversion des tensions en données exploitables" color="#6633ff" meeting="false" start="2020-01-26" duration="5" complete="0" thirdDate="2020-01-26" thirdDate-constraint="0" expand="true">
+            <depend id="16" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="16" name="Cycle 2 : Apprendre les données au réseau de neurones" color="#6633ff" meeting="false" start="2020-01-31" duration="5" complete="0" thirdDate="2020-01-07" thirdDate-constraint="0" expand="true">
+            <depend id="21" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="21" name="Cycle 2 : Tester le réseau de neurones" color="#6633ff" meeting="false" start="2020-02-05" duration="8" complete="0" thirdDate="2020-01-07" thirdDate-constraint="0" expand="true">
+            <depend id="91" type="2" difference="4" hardness="Strong"/>
+        </task>
+        <task id="91" name="Cycle 2 : Fin" color="#6633ff" meeting="true" start="2020-02-17" duration="0" complete="0" thirdDate="2020-02-17" thirdDate-constraint="0" expand="true">
+            <depend id="23" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="23" name="Cycle 3 : Création d'erreurs sur les cartes/graphes" color="#ff0099" meeting="false" start="2020-02-17" duration="2" complete="0" thirdDate="2020-01-07" thirdDate-constraint="0" expand="true">
+            <depend id="24" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="24" name="Cycle 3 : Entraîner et tester le réseau de neurones sur ces erreurs" color="#ff0099" meeting="false" start="2020-02-19" duration="5" complete="0" thirdDate="2020-02-13" thirdDate-constraint="0" expand="true">
+            <depend id="101" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="101" name="Cycle 3 : Fin" color="#ff0099" meeting="true" start="2020-03-02" duration="0" complete="0" thirdDate="2020-03-09" thirdDate-constraint="0" expand="true">
+            <depend id="25" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="25" name="Cycle 4 : Mettre le réseau de neurones sur la carte" color="#ff6600" meeting="false" start="2020-03-02" duration="5" complete="0" thirdDate="2020-03-07" thirdDate-constraint="0" expand="true">
+            <depend id="28" type="2" difference="0" hardness="Strong"/>
+            <depend id="29" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="28" name="Cycle 4 : Rédiger la documentation" color="#ff6600" meeting="false" start="2020-03-07" duration="15" complete="0" thirdDate="2020-03-14" thirdDate-constraint="0" expand="true">
+            <depend id="108" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="29" name="Cycle 4 : Convertir le signal du convertisseur analogique de la carte" color="#ff6600" meeting="false" start="2020-03-07" duration="7" complete="0" thirdDate="2020-03-14" thirdDate-constraint="0" expand="true">
+            <depend id="30" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="30" name="Cycle 4 : Tester les résultats" color="#ff6600" meeting="false" start="2020-03-14" duration="8" complete="0" thirdDate="2020-03-18" thirdDate-constraint="0" expand="true">
+            <depend id="108" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="108" name="Cycle 4 : Fin" color="#ff6600" meeting="true" start="2020-03-22" duration="0" complete="0" thirdDate="2020-03-09" thirdDate-constraint="0" expand="true">
+            <depend id="113" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="113" name="Préparation de l'oral et démonstrations" color="#99ff00" meeting="false" start="2020-03-22" duration="7" complete="0" thirdDate="2020-03-24" thirdDate-constraint="0" expand="true">
+            <depend id="109" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="109" name="Oral de projet et démonstration de la carte" color="#99ff00" meeting="true" start="2020-03-29" duration="0" complete="0" thirdDate="2020-03-09" thirdDate-constraint="0" expand="true"/>
+    </tasks>
+    <resources>
+        <resource id="0" name="Alexandre Berard" function="1" contacts="" phone=""/>
+        <resource id="1" name="Julien Liottard" function="2" contacts="" phone=""/>
+        <resource id="2" name="Marie Vialle" function="Default:1" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="0" resource-id="0" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="2" resource-id="0" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="4" resource-id="0" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="12" resource-id="0" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="87" resource-id="0" function="1" responsible="false" load="0.0"/>
+        <allocation task-id="18" resource-id="0" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="14" resource-id="0" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="16" resource-id="0" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="21" resource-id="0" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="23" resource-id="0" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="24" resource-id="0" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="25" resource-id="0" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="29" resource-id="0" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="30" resource-id="0" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="91" resource-id="0" function="1" responsible="false" load="0.0"/>
+        <allocation task-id="101" resource-id="0" function="1" responsible="false" load="0.0"/>
+        <allocation task-id="108" resource-id="0" function="1" responsible="false" load="0.0"/>
+        <allocation task-id="113" resource-id="0" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="109" resource-id="0" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="2" resource-id="1" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="4" resource-id="1" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="12" resource-id="1" function="2" responsible="true" load="100.0"/>
+        <allocation task-id="87" resource-id="1" function="2" responsible="false" load="0.0"/>
+        <allocation task-id="18" resource-id="1" function="2" responsible="true" load="100.0"/>
+        <allocation task-id="14" resource-id="1" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="16" resource-id="1" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="21" resource-id="1" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="23" resource-id="1" function="2" responsible="true" load="100.0"/>
+        <allocation task-id="24" resource-id="1" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="25" resource-id="1" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="29" resource-id="1" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="30" resource-id="1" function="2" responsible="true" load="100.0"/>
+        <allocation task-id="91" resource-id="1" function="2" responsible="false" load="0.0"/>
+        <allocation task-id="101" resource-id="1" function="2" responsible="false" load="0.0"/>
+        <allocation task-id="108" resource-id="1" function="2" responsible="false" load="0.0"/>
+        <allocation task-id="113" resource-id="1" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="109" resource-id="1" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="0" resource-id="1" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="9" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="87" resource-id="2" function="Default:1" responsible="true" load="0.0"/>
+        <allocation task-id="10" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="11" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="23" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="24" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="25" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="28" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="91" resource-id="2" function="Default:1" responsible="true" load="0.0"/>
+        <allocation task-id="101" resource-id="2" function="Default:1" responsible="true" load="0.0"/>
+        <allocation task-id="108" resource-id="2" function="Default:1" responsible="true" load="0.0"/>
+        <allocation task-id="113" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="109" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="21" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles>
+        <role id="1" name="Responsable planning"/>
+        <role id="2" name="Responsable des coûts"/>
+    </roles>
+</project>
