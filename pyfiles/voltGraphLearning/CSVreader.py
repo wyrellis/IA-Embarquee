@@ -15,8 +15,18 @@ def getCSVgraphs(csv_path):
 	for case in readed:
 		if float(case[0]) == -STEP:
 			break
-	values = [float(line[1]) for line in readed]
-	points = [values[counter*JUMP] if values[counter*JUMP] >= 0 else 0 for counter in range(ARRAY_SIZE)]
+	values = list()
+	for line in readed:
+		if len(line) != 2:
+			values.append(values[len(values)-2])
+		else:
+			values.append(0 if line[1] == '' else float(line[1]))
+	points = list()
+	for counter in range(ARRAY_SIZE):
+		point = values[len(values) - 1 if counter*JUMP > len(values) else counter*JUMP]
+		if point < 0:
+			point = 0
+		points.append(point)
 	return (label,points)
 
 def readAllCSVfromFolder(folder_name):
