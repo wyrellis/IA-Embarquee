@@ -4,15 +4,23 @@ import numpy as np
 import os
 import tensorflow as tf
 import random as rng
+import matplotlib.pyplot as plt
 
 learn_folder_name = 'courbes_cartes'
 validate_folder_name = 'courbes_cartes_test'
+graph_folder_name = 'images_de_courbes'
+global_voltage_max = 20;
+traceGraphs = True;
 
 labels = [element.split('-')[0] for element in os.listdir(learn_folder_name)]
+voltages = [int(element.split('-')[1][:-1]) for element in os.listdir(learn_folder_name)]
 
 def format_vector(vector):
-	f_vector = np.array(vector)-np.min(vector)
-	return (f_vector/np.max(f_vector)).tolist()
+	f_vector = np.array(vector)
+	for index in range(len(f_vector)):
+		if f_vector[index] < 0:
+			f_vector[index] = 0
+	return (f_vector/(global_voltage_max)).tolist()
 
 def format_label(label):
 	label_index = 0
@@ -47,8 +55,8 @@ def batch_create(b_graphs,b_labels,b_size):
 # Adds a densely-connected layer with 16 units to the model and
 # a softmax layer with same amount of labels output units:
 model = tf.keras.models.Sequential([
-  tf.keras.layers.Dense(16, activation='relu'),
-  tf.keras.layers.Dense(16, activation='relu'),
+  tf.keras.layers.Dense(24, activation='relu'),
+  tf.keras.layers.Dense(24, activation='relu'),
   tf.keras.layers.Dense(len(labels), activation='sigmoid')
 ])
 
@@ -83,8 +91,18 @@ lab_train = np.array(lab_train)
 ex_test = np.array(ex_test)
 lab_test = np.array(lab_test)
 
+# Save graphs
+if (traceGraphs):
+	for index in range(len(ex_train)):
+		plt.xlabel('Temps')
+		plt.ylabel('Tension')
+		plt.plot(ex_train[index])
+		plt.title('Courbe formatée de la carte '+ labels[lab_train[index]])
+		plt.savefig(graph_folder_name+'/format_graph_'+str(index)+'.png')
+		plt.cla()
+
 # Training
-model.fit(ex_train, lab_train, epochs=200)
+model.fit(ex_train, lab_train, epochs=60)
 
 # Evaluate
 model.evaluate(ex_test, lab_test, verbose=2)
