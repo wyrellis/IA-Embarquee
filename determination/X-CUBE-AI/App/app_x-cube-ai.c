@@ -73,7 +73,9 @@ void MX_X_CUBE_AI_Init(void)
 void MX_X_CUBE_AI_Process(void)
 {
     aiValidationProcess();
+
     /* USER CODE BEGIN 1 */
+
     /* USER CODE END 1 */
 }
 /* Multiple network support --------------------------------------------------*/

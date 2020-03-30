@@ -81,7 +81,35 @@
 
 void MX_X_CUBE_AI_Init(void);
 void MX_X_CUBE_AI_Process(void);
+
 /* USER CODE BEGIN includes */
+
+/*
+ * @brief Constants for the number of elements of input / output of the neural network
+ */
+#define prj_AI_INPUT_SIZE 100
+#define prj_AI_OUTPUT_SIZE 3
+
+/*
+ * @brief Initializes the IA
+ * @details It fills the static variable net_exec_ctx with all the installed
+ *          AIs on the board. In our project context, there is only one called 'network'.
+ */
+void prj_AI_init();
+
+/*
+ * @brief Uses the IA for the project
+ * @details Uses the IA with a given input (float table) and gives it's output
+ * @param[in] input is a table of floating numbers between 0 and 1, will be processed by the network
+ * @param[out] output is a table of floating numbers between 0 and 1
+ * @param acceleration disable text display and error handling, this parameter should be set to true
+ *        if you want to reduce calculation time, but be careful with this option
+ * @return returns 0 on success
+ * @errors Corresponding error on what the function returns
+ *        1 - Neural network not initialized
+ */
+int prj_AI_process(const float input[1][1][prj_AI_INPUT_SIZE], float output[1][1][prj_AI_OUTPUT_SIZE], bool acceleration);
+
 /* USER CODE END includes */
 /* Multiple network support --------------------------------------------------*/
 

@@ -15,4 +15,6 @@ aiValidation.c:496:6:aiPbCmdNNRun	136	static
 aiValidation.c:612:12:aiValidationCore	8	static
 aiValidation.c:637:5:aiValidationInit	8	static
 aiValidation.c:650:5:aiValidationProcess	16	static
-aiValidation.c:681:6:aiValidationDeInit	8	static
+aiValidation.c:682:6:aiValidationDeInit	8	static
+aiValidation.c:689:6:prj_AI_init	8	static
+aiValidation.c:693:5:prj_AI_process	88	static

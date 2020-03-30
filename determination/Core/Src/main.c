@@ -63,19 +63,6 @@ void MX_USART3_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-struct __FILE{
-  int handle;
-  /* Whatever you require here. If the only file you are using is */
-  /* standard output using printf() for debugging, no file handling */
-  /* is required. */
-};
-
-FILE __stdout;
-
-int fputc(int ch, FILE *f){
-	HAL_UART_Transmit(&huart3, (uint8_t *)&ch, 1, 0xFFFF);
-  return ch;
-}
 
 /* USER CODE END 0 */
 
@@ -86,8 +73,6 @@ int fputc(int ch, FILE *f){
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
-
 
   /* USER CODE END 1 */
 
@@ -117,24 +102,132 @@ int main(void)
   MX_GPIO_Init();
   MX_CRC_Init();
   MX_X_CUBE_AI_Init();
+
   /* USER CODE BEGIN 2 */
 
+  float input[1][1][100] = {{{
+  	0.03515625,
+  	0.048828125,
+  	0.0693359375,
+  	0.0849609375,
+  	0.1005859375,
+  	0.1083984375,
+  	0.1220703125,
+  	0.1298828125,
+  	0.138671875,
+  	0.146484375,
+  	0.15234375,
+  	0.15625,
+  	0.16015625,
+  	0.1640625,
+  	0.166015625,
+  	0.171875,
+  	0.1748046875,
+  	0.1796875,
+  	0.1796875,
+  	0.18359375,
+  	0.185546875,
+  	0.189453125,
+  	0.1904296875,
+  	0.193359375,
+  	0.193359375,
+  	0.197265625,
+  	0.197265625,
+  	0.19921875,
+  	0.201171875,
+  	0.201171875,
+  	0.201171875,
+  	0.203125,
+  	0.203125,
+  	0.203125,
+  	0.205078125,
+  	0.2041015625,
+  	0.205078125,
+  	0.205078125,
+  	0.205078125,
+  	0.205078125,
+  	0.205078125,
+  	0.20703125,
+  	0.20703125,
+  	0.20703125,
+  	0.20703125,
+  	0.20703125,
+  	0.20703125,
+  	0.2080078125,
+  	0.208984375,
+  	0.2080078125,
+  	0.208984375,
+  	0.2080078125,
+  	0.208984375,
+  	0.208984375,
+  	0.208984375,
+  	0.208984375,
+  	0.208984375,
+  	0.208984375,
+  	0.2109375,
+  	0.208984375,
+  	0.2109375,
+  	0.2109375,
+  	0.2109375,
+  	0.2109375,
+  	0.2119140625,
+  	0.2109375,
+  	0.2109375,
+  	0.2109375,
+  	0.212890625,
+  	0.2119140625,
+  	0.212890625,
+  	0.212890625,
+  	0.212890625,
+  	0.21484375,
+  	0.21484375,
+  	0.21484375,
+  	0.21484375,
+  	0.21484375,
+  	0.21484375,
+  	0.21484375,
+  	0.21484375,
+  	0.21484375,
+  	0.21484375,
+  	0.2158203125,
+  	0.21484375,
+  	0.21484375,
+  	0.21484375,
+  	0.21484375,
+  	0.21484375,
+  	0.21484375,
+  	0.21484375,
+  	0.216796875,
+  	0.21484375,
+  	0.2158203125,
+  	0.216796875,
+  	0.216796875,
+  	0.21484375,
+  	0.2158203125,
+  	0.216796875,
+  	0.216796875
+  }}};
+
+  float output[1][1][3];
+
+  prj_AI_init();
   MX_USART3_UART_Init();
 
-  printf("test\n");
+  printf("\r\n\r\n\r\nSorties console du projet :\r\n");
+  printf("\r\n\r\nprj_AI_process: %d", prj_AI_process(input,output,true));
+  for (int i = 0; i < prj_AI_OUTPUT_SIZE; i++) {
+	printf("\r\noutput[0][0][%d] = %f", i, output[0][0][i]);
+  }
+  printf("\r\n\r\nFin des sorties console du projet\r\n");
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
   while (1){
-	printf("a");
-    /* USER CODE END WHILE */
+	/* USER CODE BEGIN 3 */
 
-  MX_X_CUBE_AI_Process();
-    /* USER CODE BEGIN 3 */
+	/* USER CODE END 3 */
   }
-  /* USER CODE END 3 */
 }
 
 /**

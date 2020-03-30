@@ -41,8 +41,8 @@ determination.bin \
 all: determination.elf secondary-outputs
 
 # Tool invocations
-determination.elf: $(OBJS) $(USER_OBJS) D:\Program\ Files\ (x86)\STMX\IDE\STM32CubeIDE_1.1.0\determination\STM32F767ZITX_FLASH.ld
-	arm-none-eabi-gcc -o "determination.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"D:\Program Files (x86)\STMX\IDE\STM32CubeIDE_1.1.0\determination\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="determination.map" -Wl,--gc-sections -static -L../Middlewares/ST/AI/Lib --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+determination.elf: $(OBJS) $(USER_OBJS) C:\Users\berar\Documents\Projets\Projet\ S3\IA-Embarquee\determination\STM32F767ZITX_FLASH.ld
+	arm-none-eabi-gcc -o "determination.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\berar\Documents\Projets\Projet S3\IA-Embarquee\determination\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="determination.map" -Wl,--gc-sections -static -L../Middlewares/ST/AI/Lib --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
