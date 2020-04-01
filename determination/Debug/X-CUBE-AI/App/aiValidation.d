@@ -32,9 +32,10 @@ X-CUBE-AI/App/aiValidation.o: ../X-CUBE-AI/App/aiValidation.c \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
- ../X-CUBE-AI/App/app_x-cube-ai.h ../X-CUBE-AI/App/network.h \
- ../X-CUBE-AI/App/network_data.h ../X-CUBE-AI/constants_ai.h \
- ../Middlewares/ST/AI/Inc/core_datatypes.h \
+ ../X-CUBE-AI/App/app_x-cube-ai.h \
+ ../X-CUBE-AI/App/network_1582985458502.h \
+ ../X-CUBE-AI/App/network_1582985458502_data.h \
+ ../X-CUBE-AI/constants_ai.h ../Middlewares/ST/AI/Inc/core_datatypes.h \
  ../Middlewares/ST/AI/Inc/ai_network_inspector.h \
  ../Middlewares/ST/AI/Inc/ai_platform_interface.h \
  ../Middlewares/ST/AI/Inc/datatypes_network.h \
@@ -127,9 +128,9 @@ X-CUBE-AI/App/aiValidation.o: ../X-CUBE-AI/App/aiValidation.c \
 
 ../X-CUBE-AI/App/app_x-cube-ai.h:
 
-../X-CUBE-AI/App/network.h:
+../X-CUBE-AI/App/network_1582985458502.h:
 
-../X-CUBE-AI/App/network_data.h:
+../X-CUBE-AI/App/network_1582985458502_data.h:
 
 ../X-CUBE-AI/constants_ai.h:
 

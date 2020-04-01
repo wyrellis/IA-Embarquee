@@ -73,9 +73,7 @@ void MX_X_CUBE_AI_Init(void)
 void MX_X_CUBE_AI_Process(void)
 {
     aiValidationProcess();
-
     /* USER CODE BEGIN 1 */
-
     /* USER CODE END 1 */
 }
 /* Multiple network support --------------------------------------------------*/
@@ -85,20 +83,20 @@ void MX_X_CUBE_AI_Process(void)
 
 static const ai_network_entry_t networks[AI_MNETWORK_NUMBER] = {
     {
-        .name = (const char *)AI_NETWORK_MODEL_NAME,
-        .config = AI_NETWORK_DATA_CONFIG,
-        .ai_get_info = ai_network_get_info,
-        .ai_create = ai_network_create,
-        .ai_destroy = ai_network_destroy,
-        .ai_get_error = ai_network_get_error,
-        .ai_init = ai_network_init,
-        .ai_run = ai_network_run,
-        .ai_forward = ai_network_forward,
-        .ai_data_weights_get_default = ai_network_data_weights_get,
-        .params = { AI_NETWORK_DATA_WEIGHTS(0),
-                AI_NETWORK_DATA_ACTIVATIONS(0)},
-        .extActBufferStartAddr = AI_NETWORK_DATA_ACTIVATIONS_START_ADDR,
-        .actBufferSize = AI_NETWORK_DATA_ACTIVATIONS_SIZE
+        .name = (const char *)AI_NETWORK_1582985458502_MODEL_NAME,
+        .config = AI_NETWORK_1582985458502_DATA_CONFIG,
+        .ai_get_info = ai_network_1582985458502_get_info,
+        .ai_create = ai_network_1582985458502_create,
+        .ai_destroy = ai_network_1582985458502_destroy,
+        .ai_get_error = ai_network_1582985458502_get_error,
+        .ai_init = ai_network_1582985458502_init,
+        .ai_run = ai_network_1582985458502_run,
+        .ai_forward = ai_network_1582985458502_forward,
+        .ai_data_weights_get_default = ai_network_1582985458502_data_weights_get,
+        .params = { AI_NETWORK_1582985458502_DATA_WEIGHTS(0),
+                AI_NETWORK_1582985458502_DATA_ACTIVATIONS(0)},
+        .extActBufferStartAddr = AI_NETWORK_1582985458502_DATA_ACTIVATIONS_START_ADDR,
+        .actBufferSize = AI_NETWORK_1582985458502_DATA_ACTIVATIONS_SIZE
     },
 };
 

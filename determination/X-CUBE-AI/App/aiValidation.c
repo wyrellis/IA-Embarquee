@@ -657,8 +657,7 @@ int aiValidationProcess(void)
         HAL_Delay(2000);
         return r;
     } else {
-
-    	printf("\r\n");
+        printf("\r\n");
         printf("-------------------------------------------\r\n");
         printf("| READY to receive a CMD from the HOST... |\r\n");
         printf("-------------------------------------------\r\n");
@@ -686,50 +685,47 @@ void aiValidationDeInit(void)
     printf("bye bye ...\r\n");
 }
 
-void prj_AI_init() {
+void prj_AI_init(void) {
 	aiInit();
 }
 
-int prj_AI_process(const float input[1][1][prj_AI_INPUT_SIZE], float output[1][1][prj_AI_OUTPUT_SIZE], bool acceleration) {
+bool prj_AI_process(float p_input[1][1][prj_AI_INPUT_NUMBER], float p_output[1][1][prj_AI_OUTPUT_NUMBER], bool acceleration) {
 
-	ai_buffer b_input = {
-		AI_BUFFER_FORMAT_FLOAT,
-		1, 1, 1, prj_AI_INPUT_SIZE,
-		(ai_handle)input,
-		NULL
-	};
+	ai_buffer input = {
+    	AI_BUFFER_FORMAT_FLOAT,
+		1, 1, 1, 100,
+		(ai_handle)p_input,
+	NULL
+    };
 
-	ai_buffer b_output = {
-		AI_BUFFER_FORMAT_FLOAT,
-		1, 1, 1, prj_AI_OUTPUT_SIZE,
-		(ai_handle)output,
-		NULL
-	};
+    ai_buffer output = {
+    	AI_BUFFER_FORMAT_FLOAT,
+    	1, 1, 1, 3,
+		(ai_handle)p_output,
+	NULL
+    };
 
-	if (!acceleration) {
+    if (acceleration) {
+    	ai_mnetwork_run(net_exec_ctx[0].network, &input, &output);
+    	return true;
+    }
+    else {
+    	printf("\r\n\r\n\r\nprj_AI_process messages :\r\n");
+    	printf("\r\nExisting neural network ? %s", net_exec_ctx[0].network ? "true" : "false");
+    	printf("\r\nProcessing the IA...");
+    	int res = ai_mnetwork_run(net_exec_ctx[0].network, &input, &output);
+    	printf("\r\nProcessing complete! %s", res ? "Everything went fine!" : "Something wrong happened.");
+    	if (!res) {
+    		ai_error errors = ai_mnetwork_get_error(net_exec_ctx[0].network);
+    		printf("\t\r\nError - type: 0x%02X, code: 0x%02X", errors.type, errors.code);
+    		return false;
+    	}
+    	printf("\r\nOutput:");
+    	for (int i = 0; i < prj_AI_OUTPUT_NUMBER; i++) {
+    		printf("\t\r\ndense_%d: %f", i, p_output[0][0][i]);
+    	}
+    	printf("\r\n\r\nEnd of prj_AI_process messages.\r\n");
+    }
 
-		// Detects is the neural network is initialized
-		// Can be initialized using prj_AI_init
-		ai_error erreurIA = ai_mnetwork_get_error(net_exec_ctx[0].network);
-		if (erreurIA.type)
-			return 1;
-
-		printf("\r\nDebut de l'analyse...");
-		int res = ai_mnetwork_run(net_exec_ctx[0].network, &b_input, &b_output);
-		printf("\r\nFin de l'analyse, resultat de la fonction ai_mnetwork_run: %s", res ? "true" : "false");
-		if (!res) {
-			erreurIA = ai_mnetwork_get_error(net_exec_ctx[0].network);
-			printf("\r\n\tErreur - type: 0x%x, code: 0x%x", erreurIA.type, erreurIA.code);
-			return 3;
-		}
-		printf("\r\n\r\nOutput:");
-		for (int i = 0; i < 3; i++) {
-			printf("\r\ndense_%d: %f",i,output[0][0][i]);
-		}
-	}
-	else {
-		ai_mnetwork_run(net_exec_ctx[0].network, &b_input, &b_output);
-	}
-
-	return 0;
+    return true;
 }

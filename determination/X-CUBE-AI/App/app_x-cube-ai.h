@@ -53,8 +53,8 @@
   */
 /* Includes ------------------------------------------------------------------*/
 #include "ai_platform.h"
-#include "network.h"
-#include "network_data.h"
+#include "network_1582985458502.h"
+#include "network_1582985458502_data.h"
 
 #define MIN_HEAP_SIZE 0x2000
 #define MIN_STACK_SIZE 0x800
@@ -75,41 +75,42 @@
     data_out_1 \
   }; \
 
-#define AI_NETWORK_DATA_ACTIVATIONS_START_ADDR 0xFFFFFFFF
+#define AI_NETWORK_1582985458502_DATA_ACTIVATIONS_START_ADDR 0xFFFFFFFF
 
-#define AI_MNETWORK_DATA_ACTIVATIONS_INT_SIZE AI_NETWORK_DATA_ACTIVATIONS_SIZE
+#define AI_MNETWORK_DATA_ACTIVATIONS_INT_SIZE AI_NETWORK_1582985458502_DATA_ACTIVATIONS_SIZE
 
 void MX_X_CUBE_AI_Init(void);
 void MX_X_CUBE_AI_Process(void);
 
 /* USER CODE BEGIN includes */
+#include <stdbool.h>
 
 /*
- * @brief Constants for the number of elements of input / output of the neural network
+ * Constants for the size of the AI's i/o buffers
  */
-#define prj_AI_INPUT_SIZE 100
-#define prj_AI_OUTPUT_SIZE 3
+#define prj_AI_INPUT_NUMBER 100
+#define prj_AI_OUTPUT_NUMBER 3
 
 /*
- * @brief Initializes the IA
- * @details It fills the static variable net_exec_ctx with all the installed
- *          AIs on the board. In our project context, there is only one called 'network'.
+ * @brief Initializes the project use of AI.
+ * @details Use this before using the AI in order for the
+ * software to load the existing neural networks on the board.
  */
-void prj_AI_init();
+void prj_AI_init(void);
 
 /*
- * @brief Uses the IA for the project
- * @details Uses the IA with a given input (float table) and gives it's output
- * @param[in] input is a table of floating numbers between 0 and 1, will be processed by the network
- * @param[out] output is a table of floating numbers between 0 and 1
- * @param acceleration disable text display and error handling, this parameter should be set to true
- *        if you want to reduce calculation time, but be careful with this option
- * @return returns 0 on success
- * @errors Corresponding error on what the function returns
- *        1 - Neural network not initialized
+ * @brief Processes the AI using i/o buffers.
+ * @details
+ * @param input needs to contain the data that will be processed by the AI (values in [0..1]).
+ * output will receive the result calculated by the AI (needs to have free space to receive them).
+ * acceleration skips the error calculation and debug messages, set to true
+ * only if you acknowledge that there is no error using this function with no acceleration.
+ * @return If everything went fine, the function returns true.
+ * If the function returns false or unexcepted results, verify buffer format (size and values)
+ * and try again.
+ * Be sure to correctly have the UART initialized to see the output messages.
  */
-int prj_AI_process(const float input[1][1][prj_AI_INPUT_SIZE], float output[1][1][prj_AI_OUTPUT_SIZE], bool acceleration);
-
+bool prj_AI_process(float p_input[1][1][prj_AI_INPUT_NUMBER], float p_output[1][1][prj_AI_OUTPUT_NUMBER], bool acceleration);
 /* USER CODE END includes */
 /* Multiple network support --------------------------------------------------*/
 

@@ -1,6 +1,7 @@
 X-CUBE-AI/App/app_x-cube-ai.o: ../X-CUBE-AI/App/app_x-cube-ai.c \
  ../X-CUBE-AI/App/app_x-cube-ai.h ../Middlewares/ST/AI/Inc/ai_platform.h \
- ../X-CUBE-AI/App/network.h ../X-CUBE-AI/App/network_data.h \
+ ../X-CUBE-AI/App/network_1582985458502.h \
+ ../X-CUBE-AI/App/network_1582985458502_data.h \
  ../X-CUBE-AI/Target/bsp_ai.h ../Core/Inc/main.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  ../Core/Inc/stm32f7xx_hal_conf.h \
@@ -40,9 +41,9 @@ X-CUBE-AI/App/app_x-cube-ai.o: ../X-CUBE-AI/App/app_x-cube-ai.c \
 
 ../Middlewares/ST/AI/Inc/ai_platform.h:
 
-../X-CUBE-AI/App/network.h:
+../X-CUBE-AI/App/network_1582985458502.h:
 
-../X-CUBE-AI/App/network_data.h:
+../X-CUBE-AI/App/network_1582985458502_data.h:
 
 ../X-CUBE-AI/Target/bsp_ai.h:
 
