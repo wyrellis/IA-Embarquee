@@ -5,50 +5,72 @@ import os
 import tensorflow as tf
 import random as rng
 import matplotlib.pyplot as plt
+import copy as cp
 
+# Paths initialisation
 learn_folder_name = 'courbes_cartes'
 validate_folder_name = 'courbes_cartes_test'
 graph_folder_name = 'images_de_courbes'
-global_voltage_max = 20.48
-point_precision = 1024
-traceGraphs = False
 
+# Parameters initialisation
+point_precision = 1024
+global_voltage_max = 20.48
+traceGraphs = False #to create or not a graph for each prepared data
+
+# Initalisation of a array with the circuit boards' names
+# Those labels will be used to classify the data
 labels = [element.split('-')[0] for element in os.listdir(learn_folder_name)]
+
+# Initialisation of a array with the voltage supplied to the circuit board while recording the data
+# Those maximum value will weight the data to make them be set inputs
 voltages = [int(element.split('-')[1][:-1]) for element in os.listdir(learn_folder_name)]
 
+# Return a array of prepared data, ready to be inputed in an articial network
+# Input : array of the voltage values
 def format_vector(vector):
 	f_vector = np.array(vector)
 	return [int(point)/point_precision if point > 0 else 0 for point in (f_vector*(point_precision/global_voltage_max)).tolist()]
 
+# Return the position of the parameter in the "labels" array
+# Input : (str) name of the searched circuit board
 def format_label(label):
 	label_index = 0
 	while(label != labels[label_index]):
 		label_index += 1
 	return label_index
 
-def return_seed():
-	return seed
-
+# Tools to use the random.shuffle() function
 seed = 0
 def set_seed():
 	global seed
 	seed = rng.random()
 
+#  0-argument function which returns a number between 0.0 and 1.0
+def return_seed():
+	return seed
+
+# Return b_graphs and b_labels with paired elements shuffled
+# Inputs : array of values, array of label, (int) size of the final batch
 def batch_create(b_graphs,b_labels,b_size):
+	local_b_graphs = cp.deepcopy(b_graphs)
+	local_b_labels = cp.deepcopy(b_labels)
 	ret_g = []
 	ret_l = []
 	index = 0
 	for counter in range(b_size):
 		labelIndex = counter%len(labels)
-		while(b_labels[index] != labelIndex):
+		while(local_b_labels[index] != labelIndex):
 			if index == 0:
 				set_seed()
-				rng.shuffle(b_graphs,return_seed)
-				rng.shuffle(b_labels,return_seed)
+				rng.shuffle(local_b_graphs,return_seed)
+				rng.shuffle(local_b_labels,return_seed)
 			index = (index+1)%len(b_labels)
-		ret_g.append(b_graphs[index])
-		ret_l.append(b_labels[index])
+		ret_g.append(local_b_graphs[index])
+		ret_l.append(local_b_labels[index])
 	return (ret_g,ret_l)
+
+
+# Artificial network  initalisation
 
 # Adds a densely-connected layer with 16 units to the model and
 # a softmax layer with same amount of labels output units:
@@ -62,65 +84,68 @@ model.compile(optimizer=tf.keras.optimizers.RMSprop(),
               loss=tf.keras.losses.SparseCategoricalCrossentropy(),
               metrics=[tf.keras.metrics.SparseCategoricalAccuracy()])
 
+
+# Artificial network inputs initialisation
+
 # Creating training dataset
 allGraphs = CSVreader.readAllCSVfromFolder(learn_folder_name)
-
-ex_train, lab_train = [], []
+preparedValuesForTraining, labelsForTraining = [], []
 for sample in allGraphs:
-	ex_train.append(format_vector(sample[1])) # Index 1 is graph
-	lab_train.append(format_label(sample[0])) # Index 0 is label
+	preparedValuesForTraining.append(format_vector(sample[1])) # Index 1 is for the values
+	labelsForTraining.append(format_label(sample[0])) # Index 0 is for the label
 
 # Creating test dataset
 allGraphs = CSVreader.readAllCSVfromFolder(validate_folder_name)
-
-ex_test, lab_test = [], []
+preparedValuesForTest, labelsForTest = [], []
 for sample in allGraphs:
-	ex_test.append(format_vector(sample[1]))
-	lab_test.append(format_label(sample[0]))
+	preparedValuesForTest.append(format_vector(sample[1]))
+	labelsForTest.append(format_label(sample[0]))
 
-# Create batches of the dataset
+# Create batches of the datasets
 TRAIN_BATCH_SIZE = 150
 TEST_BATCH_SIZE = 20
 
-ex_train, lab_train = batch_create(ex_train,lab_train,TRAIN_BATCH_SIZE)
-ex_test, lab_test = batch_create(ex_test,lab_test,TEST_BATCH_SIZE)
-ex_train = np.array(ex_train)
-lab_train = np.array(lab_train)
-ex_test = np.array(ex_test)
-lab_test = np.array(lab_test)
+valuesBatchTrain, labelsBatchTrain = batch_create(preparedValuesForTraining,labelsForTraining,TRAIN_BATCH_SIZE)
+valuesBatchTest, labelsBatchTest = batch_create(preparedValuesForTest,labelsForTest,TEST_BATCH_SIZE)
+valuesBatchTrain = np.array(valuesBatchTrain)
+labelsBatchTrain = np.array(labelsBatchTrain)
+valuesBatchTest = np.array(valuesBatchTest)
+labelsBatchTest = np.array(labelsBatchTest)
 
-# Save graphs
+# Save graphs into visual representations in /graph_folder_name folder
 if (traceGraphs):
-	for index in range(len(ex_train)):
+	for index in range(len(valuesBatchTrain)):
 		plt.xlabel('Temps')
 		plt.ylabel('Tension')
-		plt.plot(ex_train[index])
-		plt.title('Courbe formatee de la carte '+ labels[lab_train[index]])
+		plt.plot(valuesBatchTrain[index])
+		plt.title('Courbe formatee de la carte '+ labels[valuesBatchTrain[index]])
 		plt.savefig(graph_folder_name+'/format_graph_'+str(index)+'.png')
 		plt.cla()
 
-# Save a test graph
+# Save a test graph for C use in an external text file
 save_file = open('test-carte.txt','w')
 save_file.write('float tableau1[100] = {\n')
-for value in ex_test[0]:
+for value in valuesBatchTest[0]:
 	save_file.write('\t'+str(value)+',\n')
 save_file.write('};')
 
-# Training
-model.fit(ex_train, lab_train, epochs=60)
+# Training of the network
+model.fit(valuesBatchTrain, labelsBatchTrain, epochs=60)
 
-# Evaluate
-model.evaluate(ex_test, lab_test, verbose=2)
+# Network evaluation 
+model.evaluate(valuesBatchTest, labelsBatchTest, verbose=2)
 
-# Saving (maybe interpreted by STM32Cube AI module ?)
+# Saving the network into a TensorFlowLite file
 converter = tf.lite.TFLiteConverter.from_keras_model(model)
 tflite_model = converter.convert()
 saved_file = open('reseau.tflite','wb')
 saved_file.write(tflite_model)
 
 print("Test with the first ten vectors of the set:")
-for numtest in range(len(ex_test)):
+for numtest in range(len(valuesBatchTest)):
 	print('Test n'+str(numtest+1))
-	print(model.predict(np.array([ex_test[numtest]])))
-	print('true label   :'+labels[lab_test[numtest]])
-	print('guessed label:'+labels[np.argmax(model.predict(np.array([ex_test[numtest]])))])
+	print(model.predict(np.array([valuesBatchTest[numtest]])))
+	print('true label   :'+labels[labelsBatchTest[numtest]])
+	print('guessed label:'+labels[np.argmax(model.predict(np.array([valuesBatchTest[numtest]])))])
+
+
