@@ -1,3 +1,4 @@
+import sys
 import csv
 import os
 
@@ -8,7 +9,7 @@ def getCSVgraphs(csv_path):
 	VOLTAGE_THRESHOLD = -1E-8 #threshold for the begining of the selection
 	ARRAY_SIZE = 100 #number of points returned with the label
 
-	folder_name = csv_path.split('/')[1]
+	folder_name = csv_path.split('/')[-1]
 	label = folder_name.split('-')[0]
 	CSVFile = open(csv_path,'r')
 	csvFileReader = csv.reader(CSVFile)
@@ -44,13 +45,19 @@ def getCSVgraphs(csv_path):
 # Return an array of a pair of a PCB label and all the voltage data
 # Input : (string) name of the folder containing different circuit board folder(s) with the data associated to them
 # example of a tree view : folder_name --|- PCB1-V5 -|- record1.csv
-#										 |			 |- record2.csv
-#										 |
-#										 |- PCB2-V9 -|- record1.csv
-#													 |- record2.csv
+#                                        |           |- record2.csv
+#                                        |
+#                                        |- PCB2-V9 -|- record1.csv
+#                                                    |- record2.csv
 def readAllCSVfromFolder(folder_name):
 	result = list()
 	for label_folder_name in os.listdir(folder_name):
 		for csv_name in os.listdir(folder_name+'/'+label_folder_name):
 			result.append(getCSVgraphs(folder_name+'/'+label_folder_name+'/'+csv_name))
 	return result
+
+if __name__ == '__main__':
+	if (len(sys.argv) != 2):
+		print('Usage : <python_command> '+sys.argv[0]+' <folder_path>')
+		quit()
+	print(readAllCSVfromFolder(sys.argv[1]))

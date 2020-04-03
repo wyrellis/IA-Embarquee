@@ -1,0 +1,59 @@
+Neural Network Tools for STM32 v1.2.0 (AI tools v5.0.0)
+Created date       : 2020-04-03 01:56:01
+
+Exec/report summary (generate dur=0.472s err=0)
+------------------------------------------------------------------------------------------------------------------------
+model file         : C:\Users\berar\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs\home\kepler\Programming\Python\TensorFlow\pyfiles\voltGraphLearning\reseau.tflite
+type               : tflite (tflite)
+c_name             : network
+compression        : 8
+quantize           : None
+L2r error          : NOT EVALUATED
+workspace dir      : C:\Users\berar\AppData\Local\Temp\mxAI_workspace10085965802265005594757142644232867
+output dir         : C:\Users\berar\.stm32cubemx\stm32ai_output
+
+model_name         : reseau
+model_hash         : 509240d1beba323d50f3b039f1707d92
+input              : input_0 [100 items, 400 B, ai_float, FLOAT32, (100,)]
+input (total)      : 400 B
+output             : nl_3 [3 items, 12 B, ai_float, FLOAT32, (3,)]
+output (total)     : 12 B
+params #           : 3,099 items (12.11 KiB)
+macc               : 3,126
+weights (ro)       : 2,108 (2.06 KiB) (-82.99%) 
+activations (rw)   : 192 (192 B) 
+ram (total)        : 604 (604 B) = 192 + 400 + 12
+
+------------------------------------------------------------------------------------------------------------------------
+id  layer (type)        output shape      param #     connected to             macc           rom                
+------------------------------------------------------------------------------------------------------------------------
+0   input_0 (Input)     (100,)                                                                                   
+    dense_0 (Dense)     (24,)             2,424       input_0                  2,400          1,360 (c)          
+    nl_0 (Nonlinearity) (24,)                         dense_0                  24                                
+------------------------------------------------------------------------------------------------------------------------
+1   dense_1 (Dense)     (24,)             600         nl_0                     576            448 (c)            
+    nl_1 (Nonlinearity) (24,)                         dense_1                  24                                
+------------------------------------------------------------------------------------------------------------------------
+2   dense_2 (Dense)     (3,)              75          nl_1                     72             300                
+------------------------------------------------------------------------------------------------------------------------
+3   nl_3 (Nonlinearity) (3,)                          dense_2                  30                                
+------------------------------------------------------------------------------------------------------------------------
+reseau p=3099(12.11 KBytes) macc=3126 rom=2.06 KBytes (-82.99%) ram=192 B io_ram=412 B
+
+ 
+Complexity per-layer - macc=3,126 rom=2,108
+------------------------------------------------------------------------------------------------------------------------
+id      layer (type)        macc                                    rom                                    
+------------------------------------------------------------------------------------------------------------------------
+0       dense_0 (Dense)     |||||||||||||||||||||||||||||||  76.8%  |||||||||||||||||||||||||||||||  64.5% 
+0       nl_0 (Nonlinearity) |                                 0.8%  |                                 0.0% 
+1       dense_1 (Dense)     ||||||||                         18.4%  ||||||||||                       21.3% 
+1       nl_1 (Nonlinearity) |                                 0.8%  |                                 0.0% 
+2       dense_2 (Dense)     |                                 2.3%  |||||||                          14.2% 
+3       nl_3 (Nonlinearity) |                                 1.0%  |                                 0.0% 
+------------------------------------------------------------------------------------------------------------------------
+
+
+Evaluation report (summary)
+--------------------------------------------------
+NOT EVALUATED

@@ -107,6 +107,7 @@ TEST_BATCH_SIZE = 20
 
 valuesBatchTrain, labelsBatchTrain = batch_create(preparedValuesForTraining,labelsForTraining,TRAIN_BATCH_SIZE)
 valuesBatchTest, labelsBatchTest = batch_create(preparedValuesForTest,labelsForTest,TEST_BATCH_SIZE)
+
 valuesBatchTrain = np.array(valuesBatchTrain)
 labelsBatchTrain = np.array(labelsBatchTrain)
 valuesBatchTest = np.array(valuesBatchTest)
