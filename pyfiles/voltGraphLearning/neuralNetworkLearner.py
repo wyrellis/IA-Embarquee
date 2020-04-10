@@ -4,7 +4,6 @@ import numpy as np
 import os
 import tensorflow as tf
 import random as rng
-import matplotlib.pyplot as plt
 import copy as cp
 
 # Paths initialisation
@@ -69,7 +68,6 @@ def batch_create(b_graphs,b_labels,b_size):
 		ret_l.append(local_b_labels[index])
 	return (ret_g,ret_l)
 
-
 # Artificial network  initalisation
 
 # Adds a densely-connected layer with 16 units to the model and
@@ -114,6 +112,7 @@ labelsBatchTest = np.array(labelsBatchTest)
 
 # Save graphs into visual representations in /graph_folder_name folder
 if (traceGraphs):
+	import matplotlib.pyplot as plt
 	for index in range(len(valuesBatchTrain)):
 		plt.xlabel('Temps')
 		plt.ylabel('Tension')
@@ -122,17 +121,20 @@ if (traceGraphs):
 		plt.savefig(graph_folder_name+'/format_graph_'+str(index)+'.png')
 		plt.cla()
 
-# Save a test graph for C use in an external text file
-save_file = open('test-carte.txt','w')
-save_file.write('float tableau1[100] = {\n')
-for value in valuesBatchTest[0]:
-	save_file.write('\t'+str(value)+',\n')
-save_file.write('};')
+# Save the batch of test graphs in external binary files
+import struct
+index = 0
+for fromBatchTest in valuesBatchTest:
+	save_file = open('courbes_bin/test-carte-' + str(index) + '.bin','wb')
+	index += 1
+	# Saves the floating values in 32 bit format with struct
+	for value in fromBatchTest:
+		save_file.write(struct.pack('f',float(value)))
 
 # Training of the network
 model.fit(valuesBatchTrain, labelsBatchTrain, epochs=60)
 
-# Network evaluation 
+# Network evaluation
 model.evaluate(valuesBatchTest, labelsBatchTest, verbose=2)
 
 # Saving the network into a TensorFlowLite file
@@ -141,11 +143,16 @@ tflite_model = converter.convert()
 saved_file = open('reseau.tflite','wb')
 saved_file.write(tflite_model)
 
+import time
+
 print("Test with the first ten vectors of the set:")
 for numtest in range(len(valuesBatchTest)):
 	print('Test n'+str(numtest+1))
 	print(model.predict(np.array([valuesBatchTest[numtest]])))
 	print('true label   :'+labels[labelsBatchTest[numtest]])
-	print('guessed label:'+labels[np.argmax(model.predict(np.array([valuesBatchTest[numtest]])))])
-
-
+	toPredict = np.array([valuesBatchTest[numtest]])
+	print('guessed label:'+labels[np.argmax(model.predict(toPredict))])
+	start = time.time()
+	model.predict(toPredict)
+	end = time.time()
+	print('calculation time:' + str(end - start))

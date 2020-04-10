@@ -25,6 +25,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -61,6 +63,8 @@ void MX_USART3_UART_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 float timerCounterDiff(unsigned int start, unsigned int stop, float fosckHz);
+int maxF(float* list, unsigned int listSize);
+void global_analysis();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -106,146 +110,19 @@ int main(void)
   MX_TIM2_Init();
   MX_X_CUBE_AI_Init();
   /* USER CODE BEGIN 2 */
-  float input[1][1][prj_AI_INPUT_NUMBER] = {{{
-    0.03515625,
-    0.048828125,
-    0.0693359375,
-    0.0849609375,
-    0.1005859375,
-    0.1083984375,
-    0.1220703125,
-    0.1298828125,
-    0.138671875,
-    0.146484375,
-    0.15234375,
-    0.15625,
-    0.16015625,
-    0.1640625,
-    0.166015625,
-    0.171875,
-    0.1748046875,
-    0.1796875,
-    0.1796875,
-    0.18359375,
-    0.185546875,
-    0.189453125,
-    0.1904296875,
-    0.193359375,
-    0.193359375,
-    0.197265625,
-    0.197265625,
-    0.19921875,
-    0.201171875,
-    0.201171875,
-    0.201171875,
-    0.203125,
-    0.203125,
-    0.203125,
-    0.205078125,
-    0.2041015625,
-    0.205078125,
-    0.205078125,
-    0.205078125,
-    0.205078125,
-    0.205078125,
-    0.20703125,
-    0.20703125,
-    0.20703125,
-    0.20703125,
-    0.20703125,
-    0.20703125,
-    0.2080078125,
-    0.208984375,
-    0.2080078125,
-    0.208984375,
-    0.2080078125,
-    0.208984375,
-    0.208984375,
-    0.208984375,
-    0.208984375,
-    0.208984375,
-    0.208984375,
-    0.2109375,
-    0.208984375,
-    0.2109375,
-    0.2109375,
-    0.2109375,
-    0.2109375,
-    0.2119140625,
-    0.2109375,
-    0.2109375,
-    0.2109375,
-    0.212890625,
-    0.2119140625,
-    0.212890625,
-    0.212890625,
-    0.212890625,
-    0.21484375,
-    0.21484375,
-    0.21484375,
-    0.21484375,
-    0.21484375,
-    0.21484375,
-    0.21484375,
-    0.21484375,
-    0.21484375,
-    0.21484375,
-    0.2158203125,
-    0.21484375,
-    0.21484375,
-    0.21484375,
-    0.21484375,
-    0.21484375,
-    0.21484375,
-    0.21484375,
-    0.216796875,
-    0.21484375,
-    0.2158203125,
-    0.216796875,
-    0.216796875,
-    0.21484375,
-    0.2158203125,
-    0.216796875,
-    0.216796875
-  }}};
-
-  float output[1][1][prj_AI_OUTPUT_NUMBER];
 
   // Initialize the AI neural network
   prj_AI_init();
 
-  // Starting the timer
-  HAL_TIM_Base_Start(&htim2);
-
-  // Values for time calculation and starts counting time
-  printf("\r\n\r\nStarting the timer...");
-  unsigned int counter_stop;
-  unsigned int counter_start;
-  counter_start = htim2.Instance->CNT;
-
-  // Processing the IA
-  prj_AI_process(input, output, true);
-
-  // Stopping the timer
-  counter_stop = htim2.Instance->CNT;
-  printf("\r\nStopping the timer...");
-
-  printf("\r\n");
-  for (int i = 0; i < prj_AI_OUTPUT_NUMBER; i++) {
-	  printf("\r\noutput[0][0][%d]: %f", i, output[0][0][i]);
-  }
-  printf("\r\n");
-  printf("\r\nExecution time: %f microseconds\r\n",timerCounterDiff(counter_start, counter_stop, 54E6));
-
-//  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-//  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_7);
-//  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
-
+  printf("\r\n\r\nPress USER button to use the neural network.\r\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1){
+    if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13))
+      global_analysis();
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -430,11 +307,18 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_14|GPIO_PIN_7, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : PC13 */
+  GPIO_InitStruct.Pin = GPIO_PIN_13;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PB0 PB14 PB7 */
   GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_14|GPIO_PIN_7;
@@ -457,6 +341,94 @@ static void MX_GPIO_Init(void)
 float timerCounterDiff(unsigned int start, unsigned int stop, float foscHz) {
 	float diff = stop - start;
 	return 1E6*diff/foscHz;
+}
+
+/*
+ * @brief Returns the maximum value of a floating numbers list.
+ * @param list is the pointer to the list, listSize is the list size.
+ * @return The returned number is the index where is located the maximum element of the list.
+ */
+int maxF(float* list, unsigned int listSize) {
+	int iMax = 0;
+	float vMax = list[0];
+
+	for (int i = 1; i < listSize; i++) {
+		if (list[i] > vMax) {
+			vMax = list[i];
+			iMax = i;
+		}
+	}
+
+	return iMax;
+}
+
+/*
+ * @brief Does the global analysis by the board.
+ * @details When called, is first waiting for data coming on the UART and, depending
+ * on this received data, the neural network will calculate a label. A corresponding
+ * LED will be toggled depending on the calculated output.
+ */
+void global_analysis() {
+	// I/O variables
+	float input[1][1][prj_AI_INPUT_NUMBER];
+	float output[1][1][prj_AI_OUTPUT_NUMBER];
+
+	// Toggling all LEDs to signal that the board is receiving the data
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, true);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, true);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, true);
+	printf("\r\n\r\nReveiving data...");
+	printf("Timeout in 30 seconds.");
+
+	// Receiving data with a 30 seconds timeout
+	HAL_UART_Receive(&huart3, (uint8_t *) input[0][0], prj_AI_INPUT_NUMBER * sizeof(float), 30000);
+
+	// Un-toggling all LEDs to signal that the board received the data / timeout
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, false);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, false);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, false);
+
+	printf("\r\n\r\nNeural network is working...");
+	// Starting the counter
+	HAL_TIM_Base_Start(&htim2);
+
+	// Values for time calculation and starts counting time
+	unsigned int counter_stop;
+	unsigned int counter_start;
+	counter_start = htim2.Instance->CNT;
+
+	// Processing the IA
+	prj_AI_process(input, output, true);
+
+	// Stopping counting time
+	counter_stop = htim2.Instance->CNT;
+
+	printf("\r\n");
+	for (int i = 0; i < prj_AI_OUTPUT_NUMBER; i++) {
+		printf("\r\noutput[0][0][%d]: %f", i, output[0][0][i]);
+	}
+	printf("\r\n");
+	printf("\r\nExecution time: %f microseconds",timerCounterDiff(counter_start, counter_stop, 54E6));
+
+	// Telling the user which LED is associated to which board label
+	printf("\r\n\r\nLEDs:\r\n Green LED:\tarduino_duemilanove\r\n Blue LED:\tmicrochip_picdem_2_plus_demo_board\r\n Red LED:\tstm32_mb997b");
+	printf("\r\nBy default, the green LED is toggled.");
+
+	// Toggle the corresponding LED according to the output
+	switch(maxF(output[0][0], prj_AI_OUTPUT_NUMBER)) {
+	case 0: // arduino_duemilanove
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, true);
+		printf("\r\n\r\nToggled Green LED!\r\n");
+		break;
+	case 1: // microchip_picdem_2_plus_demo_board
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, true);
+		printf("\r\n\r\nToggled Blue LED!\r\n");
+		break;
+	case 2: // stm32_mb997b
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, true);
+		printf("\r\n\r\nToggled Red LED!\r\n");
+		break;
+	}
 }
 
 /* USER CODE END 4 */

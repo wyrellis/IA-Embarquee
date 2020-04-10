@@ -1,7 +1,7 @@
 Neural Network Tools for STM32 v1.2.0 (AI tools v5.0.0)
-Created date       : 2020-04-03 01:56:01
+Created date       : 2020-04-10 00:30:28
 
-Exec/report summary (generate dur=0.472s err=0)
+Exec/report summary (generate dur=0.478s err=0)
 ------------------------------------------------------------------------------------------------------------------------
 model file         : C:\Users\berar\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs\home\kepler\Programming\Python\TensorFlow\pyfiles\voltGraphLearning\reseau.tflite
 type               : tflite (tflite)
@@ -9,11 +9,11 @@ c_name             : network
 compression        : 8
 quantize           : None
 L2r error          : NOT EVALUATED
-workspace dir      : C:\Users\berar\AppData\Local\Temp\mxAI_workspace10085965802265005594757142644232867
+workspace dir      : C:\Users\berar\AppData\Local\Temp\mxAI_workspace2040677649679006456685466313706908
 output dir         : C:\Users\berar\.stm32cubemx\stm32ai_output
 
 model_name         : reseau
-model_hash         : 509240d1beba323d50f3b039f1707d92
+model_hash         : d6debd510b84a8853709aa6ec183271d
 input              : input_0 [100 items, 400 B, ai_float, FLOAT32, (100,)]
 input (total)      : 400 B
 output             : nl_3 [3 items, 12 B, ai_float, FLOAT32, (3,)]
