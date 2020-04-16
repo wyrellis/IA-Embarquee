@@ -36,19 +36,31 @@ def createCSVfile(folderName, fileName, vector, headerName):
 #Create the data folder with specified number of entries
 import os
 def generateVectors(number,folderName):
+    import matplotlib.pyplot as plt
+
     #Create a folder named "data" or make sure it exists
     folderPath = os.path.join(os.path.dirname(__file__), folderName)
     if not os.path.exists(folderPath):
-        os.makedirs(folderPath)
+        os.makedirs(folderPath+'/images')
 
     #Generating vectors in the data folder
     for i in range(number):
+        plt.xlabel('Axe X')
+        plt.ylabel('Axe Y')
         vectorName = "vector-" + str(i)
         if(random.randint(0,1) == 0): #ASC
             vectorName += "-ASC"
-            createCSVfile(folderName, vectorName,generateRandomVector(generateDefaultVectorAsc),'ASC')
+            courbe = generateRandomVector(generateDefaultVectorAsc)
+            createCSVfile(folderName, vectorName, courbe,'ASC')
+            print(courbe)
+            plt.plot([_[1] for _ in courbe])
+            plt.title('Courbe ascendante de 10 points')
         else: # DESC
             vectorName += "-DESC"
+            courbe = generateRandomVector(generateDefaultVectorDesc)
             createCSVfile(folderName, vectorName,generateRandomVector(generateDefaultVectorDesc),'DESC')
-
-
+            print(courbe)
+            plt.plot([_[1] for _ in courbe])
+            plt.title('Courbe descendante de 10 points')
+        plt.savefig(folderPath + '/images/' + vectorName)
+        plt.cla()
