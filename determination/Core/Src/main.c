@@ -377,8 +377,8 @@ void global_analysis() {
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, true);
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, true);
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, true);
-	printf("\r\n\r\nReveiving data...");
-	printf("Timeout in 30 seconds.");
+	printf("\r\n\r\nReveiving data...\r\n");
+	printf("Timeout in 30 seconds.\r\n");
 
 	// Receiving data with a 30 seconds timeout
 	HAL_UART_Receive(&huart3, (uint8_t *) input[0][0], prj_AI_INPUT_NUMBER * sizeof(float), 30000);
@@ -388,7 +388,7 @@ void global_analysis() {
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, false);
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, false);
 
-	printf("\r\n\r\nNeural network is working...");
+	printf("\r\nNeural network is working...");
 	// Starting the counter
 	HAL_TIM_Base_Start(&htim2);
 

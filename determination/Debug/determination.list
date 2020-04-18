@@ -7,23 +7,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .text         000156e0  08000200  08000200  00010200  2**4
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       000024f0  080158e0  080158e0  000258e0  2**3
+  2 .rodata       00001f10  080158e0  080158e0  000258e0  2**3
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  08017dd0  08017dd0  0003089c  2**0
+  3 .ARM.extab    00000000  080177f0  080177f0  0003089c  2**0
                   CONTENTS
-  4 .ARM          00000008  08017dd0  08017dd0  00027dd0  2**2
+  4 .ARM          00000008  080177f0  080177f0  000277f0  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  08017dd8  08017dd8  0003089c  2**0
+  5 .preinit_array 00000000  080177f8  080177f8  0003089c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  08017dd8  08017dd8  00027dd8  2**2
+  6 .init_array   00000004  080177f8  080177f8  000277f8  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000004  08017ddc  08017ddc  00027ddc  2**2
+  7 .fini_array   00000004  080177fc  080177fc  000277fc  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         0000089c  20000000  08017de0  00030000  2**2
+  8 .data         0000089c  20000000  08017800  00030000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          000005c4  200008a0  0801867c  000308a0  2**3
+  9 .bss          00000540  200008a0  0801809c  000308a0  2**3
                   ALLOC
- 10 ._user_heap_stack 00002804  20000e64  0801867c  00030e64  2**0
+ 10 ._user_heap_stack 00002800  20000de0  0801809c  00030de0  2**0
                   ALLOC
  11 .ARM.attributes 00000032  00000000  00000000  0003089c  2**0
                   CONTENTS, READONLY
@@ -39,11 +39,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  17 .debug_line   0001192d  00000000  00000000  000811ed  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    0010bd5b  00000000  00000000  00092b1a  2**0
+ 18 .debug_str    0010bd59  00000000  00000000  00092b1a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      00008cad  00000000  00000000  0019e875  2**0
+ 19 .comment      00008cad  00000000  00000000  0019e873  2**0
                   CONTENTS, READONLY
- 20 .iar.rtmodel  0000033e  00000000  00000000  001a7522  2**0
+ 20 .iar.rtmodel  0000033e  00000000  00000000  001a7520  2**0
                   CONTENTS, READONLY
  21 .iar_vfe_header 00000034  00000000  00000000  001a7860  2**2
                   CONTENTS, READONLY
@@ -10743,7 +10743,7 @@ Disassembly of section .text:
  8006914:	00840040 	.word	0x00840040
 
 08006918 <.text_21>:
- 8006918:	08016574 	.word	0x08016574
+ 8006918:	08016570 	.word	0x08016570
 
 0800691c <.text_22>:
  800691c:	007ff7f1 	.word	0x007ff7f1
@@ -10752,7 +10752,7 @@ Disassembly of section .text:
  8006920:	00fe07f1 	.word	0x00fe07f1
 
 08006924 <.text_24>:
- 8006924:	080165e4 	.word	0x080165e4
+ 8006924:	080165e0 	.word	0x080165e0
 
 08006928 <.text_25>:
  8006928:	00803fff 	.word	0x00803fff
@@ -12653,7 +12653,7 @@ static void MX_CRC_Init(void)
 }
  8007a18:	bf00      	nop
  8007a1a:	bd80      	pop	{r7, pc}
- 8007a1c:	20000c5c 	.word	0x20000c5c
+ 8007a1c:	20000bd8 	.word	0x20000bd8
  8007a20:	40023000 	.word	0x40023000
 
 08007a24 <MX_TIM2_Init>:
@@ -12765,7 +12765,7 @@ static void MX_TIM2_Init(void)
  8007ab6:	46bd      	mov	sp, r7
  8007ab8:	bd80      	pop	{r7, pc}
  8007aba:	bf00      	nop
- 8007abc:	20000c80 	.word	0x20000c80
+ 8007abc:	20000bfc 	.word	0x20000bfc
 
 08007ac0 <MX_USART3_UART_Init>:
   * @brief USART3 Initialization Function
@@ -12839,7 +12839,7 @@ void MX_USART3_UART_Init(void)
  8007b12:	bf00      	nop
  8007b14:	bd80      	pop	{r7, pc}
  8007b16:	bf00      	nop
- 8007b18:	20000bdc 	.word	0x20000bdc
+ 8007b18:	20000b58 	.word	0x20000b58
  8007b1c:	40004800 	.word	0x40004800
 
 08007b20 <MX_GPIO_Init>:
@@ -13081,12 +13081,12 @@ void global_analysis() {
  8007cac:	f44f 4180 	mov.w	r1, #16384	; 0x4000
  8007cb0:	4850      	ldr	r0, [pc, #320]	; (8007df4 <global_analysis+0x164>)
  8007cb2:	f000 fe69 	bl	8008988 <HAL_GPIO_WritePin>
-	printf("\r\n\r\nReveiving data...");
+	printf("\r\n\r\nReveiving data...\r\n");
  8007cb6:	4850      	ldr	r0, [pc, #320]	; (8007df8 <global_analysis+0x168>)
- 8007cb8:	f009 fa1e 	bl	80110f8 <iprintf>
-	printf("Timeout in 30 seconds.");
+ 8007cb8:	f009 fa92 	bl	80111e0 <puts>
+	printf("Timeout in 30 seconds.\r\n");
  8007cbc:	484f      	ldr	r0, [pc, #316]	; (8007dfc <global_analysis+0x16c>)
- 8007cbe:	f009 fa1b 	bl	80110f8 <iprintf>
+ 8007cbe:	f009 fa8f 	bl	80111e0 <puts>
 
 	// Receiving data with a 30 seconds timeout
 	HAL_UART_Receive(&huart3, (uint8_t *) input[0][0], prj_AI_INPUT_NUMBER * sizeof(float), 30000);
@@ -13113,7 +13113,7 @@ void global_analysis() {
  8007cee:	4841      	ldr	r0, [pc, #260]	; (8007df4 <global_analysis+0x164>)
  8007cf0:	f000 fe4a 	bl	8008988 <HAL_GPIO_WritePin>
 
-	printf("\r\n\r\nNeural network is working...");
+	printf("\r\nNeural network is working...");
  8007cf4:	4843      	ldr	r0, [pc, #268]	; (8007e04 <global_analysis+0x174>)
  8007cf6:	f009 f9ff 	bl	80110f8 <iprintf>
 	// Starting the counter
@@ -13252,18 +13252,18 @@ void global_analysis() {
  8007df4:	40020400 	.word	0x40020400
  8007df8:	08015914 	.word	0x08015914
  8007dfc:	0801592c 	.word	0x0801592c
- 8007e00:	20000bdc 	.word	0x20000bdc
+ 8007e00:	20000b58 	.word	0x20000b58
  8007e04:	08015944 	.word	0x08015944
- 8007e08:	20000c80 	.word	0x20000c80
- 8007e0c:	08015968 	.word	0x08015968
- 8007e10:	0801596c 	.word	0x0801596c
+ 8007e08:	20000bfc 	.word	0x20000bfc
+ 8007e0c:	08015964 	.word	0x08015964
+ 8007e10:	08015968 	.word	0x08015968
  8007e14:	4c4dfe60 	.word	0x4c4dfe60
- 8007e18:	08015984 	.word	0x08015984
- 8007e1c:	080159a8 	.word	0x080159a8
- 8007e20:	08015a1c 	.word	0x08015a1c
- 8007e24:	08015a44 	.word	0x08015a44
- 8007e28:	08015a5c 	.word	0x08015a5c
- 8007e2c:	08015a74 	.word	0x08015a74
+ 8007e18:	08015980 	.word	0x08015980
+ 8007e1c:	080159a4 	.word	0x080159a4
+ 8007e20:	08015a18 	.word	0x08015a18
+ 8007e24:	08015a40 	.word	0x08015a40
+ 8007e28:	08015a58 	.word	0x08015a58
+ 8007e2c:	08015a70 	.word	0x08015a70
 
 08007e30 <Error_Handler>:
 /**
@@ -13871,7 +13871,7 @@ caddr_t _sbrk(int incr)
  80080d8:	46bd      	mov	sp, r7
  80080da:	bd80      	pop	{r7, pc}
  80080dc:	200008e0 	.word	0x200008e0
- 80080e0:	20000e68 	.word	0x20000e68
+ 80080e0:	20000de0 	.word	0x20000de0
 
 080080e4 <SystemInit>:
   *         SystemFrequency variable.
@@ -13985,7 +13985,7 @@ LoopFillZerobss:
   ldr   sp, =_estack      /* set stack pointer */
  8008148:	20080000 	.word	0x20080000
   ldr  r3, =_sidata
- 800814c:	08017de0 	.word	0x08017de0
+ 800814c:	08017800 	.word	0x08017800
   ldr  r0, =_sdata
  8008150:	20000000 	.word	0x20000000
   ldr  r3, =_edata
@@ -13993,7 +13993,7 @@ LoopFillZerobss:
   ldr  r2, =_sbss
  8008158:	200008a0 	.word	0x200008a0
   ldr  r3, = _ebss
- 800815c:	20000e64 	.word	0x20000e64
+ 800815c:	20000de0 	.word	0x20000de0
 
 08008160 <ADC_IRQHandler>:
  * @retval None       
@@ -14129,7 +14129,7 @@ __weak void HAL_IncTick(void)
  80081f8:	4770      	bx	lr
  80081fa:	bf00      	nop
  80081fc:	20000010 	.word	0x20000010
- 8008200:	20000cc0 	.word	0x20000cc0
+ 8008200:	20000c3c 	.word	0x20000c3c
 
 08008204 <HAL_GetTick>:
   * @note This function is declared as __weak to be overwritten in case of other 
@@ -14149,7 +14149,7 @@ __weak uint32_t HAL_GetTick(void)
  8008210:	f85d 7b04 	ldr.w	r7, [sp], #4
  8008214:	4770      	bx	lr
  8008216:	bf00      	nop
- 8008218:	20000cc0 	.word	0x20000cc0
+ 8008218:	20000c3c 	.word	0x20000c3c
 
 0800821c <HAL_GetHalVersion>:
 /**
@@ -16812,7 +16812,7 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef  *RCC_ClkInitStruct, ui
  800917a:	bf00      	nop
  800917c:	40023c00 	.word	0x40023c00
  8009180:	40023800 	.word	0x40023800
- 8009184:	08016614 	.word	0x08016614
+ 8009184:	08016610 	.word	0x08016610
  8009188:	20000008 	.word	0x20000008
  800918c:	2000000c 	.word	0x2000000c
 
@@ -17049,7 +17049,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
  8009328:	4618      	mov	r0, r3
  800932a:	bd80      	pop	{r7, pc}
  800932c:	40023800 	.word	0x40023800
- 8009330:	08016624 	.word	0x08016624
+ 8009330:	08016620 	.word	0x08016620
 
 08009334 <HAL_RCC_GetPCLK2Freq>:
   * @note   Each time PCLK2 changes, this function must be called to update the
@@ -17075,7 +17075,7 @@ uint32_t HAL_RCC_GetPCLK2Freq(void)
  8009350:	4618      	mov	r0, r3
  8009352:	bd80      	pop	{r7, pc}
  8009354:	40023800 	.word	0x40023800
- 8009358:	08016624 	.word	0x08016624
+ 8009358:	08016620 	.word	0x08016620
 
 0800935c <HAL_RCCEx_PeriphCLKConfig>:
   *         the backup registers) are set to their reset values.
@@ -21381,7 +21381,7 @@ void aiPbMgrSendResp(const reqMsg *req, respMsg *resp,
  800ad6e:	46bd      	mov	sp, r7
  800ad70:	bd80      	pop	{r7, pc}
  800ad72:	bf00      	nop
- 800ad74:	080172cc 	.word	0x080172cc
+ 800ad74:	08016ce8 	.word	0x08016ce8
  800ad78:	200008f4 	.word	0x200008f4
 
 0800ad7c <aiPbMgrSendAck>:
@@ -21452,7 +21452,7 @@ bool aiPbMgrWaitAck(void)
  800adda:	3710      	adds	r7, #16
  800addc:	46bd      	mov	sp, r7
  800adde:	bd80      	pop	{r7, pc}
- 800ade0:	08017220 	.word	0x08017220
+ 800ade0:	08016c3c 	.word	0x08016c3c
  800ade4:	200008e4 	.word	0x200008e4
 
 0800ade8 <aiPbAiBufferSize>:
@@ -21946,7 +21946,7 @@ bool aiPbMgrReceiveAiBuffer3(const reqMsg *req, respMsg *resp,
  800b0b4:	bd80      	pop	{r7, pc}
  800b0b6:	bf00      	nop
  800b0b8:	0800ae6f 	.word	0x0800ae6f
- 800b0bc:	08017174 	.word	0x08017174
+ 800b0bc:	08016b90 	.word	0x08016b90
  800b0c0:	200008e4 	.word	0x200008e4
 
 0800b0c4 <aiPbMgrSetMetaInfo>:
@@ -22642,7 +22642,7 @@ static bool nn_shape_w_cb(pb_ostream_t *stream, const pb_field_t *field,
  800b57a:	46bd      	mov	sp, r7
  800b57c:	bd80      	pop	{r7, pc}
  800b57e:	bf00      	nop
- 800b580:	08016fc0 	.word	0x08016fc0
+ 800b580:	080169dc 	.word	0x080169dc
 
 0800b584 <nn_inputs_w_cb>:
 
@@ -22792,7 +22792,7 @@ void aiPbStrCopy(const char *src, char *dst, uint32_t max)
  800b65e:	3720      	adds	r7, #32
  800b660:	46bd      	mov	sp, r7
  800b662:	bd80      	pop	{r7, pc}
- 800b664:	08015a8c 	.word	0x08015a8c
+ 800b664:	08015a88 	.word	0x08015a88
 
 0800b668 <aiPbVersionToUint32>:
 
@@ -23085,7 +23085,7 @@ void crcIpInit(void)
  800b848:	46bd      	mov	sp, r7
  800b84a:	bd80      	pop	{r7, pc}
  800b84c:	40023800 	.word	0x40023800
- 800b850:	08015a98 	.word	0x08015a98
+ 800b850:	08015a94 	.word	0x08015a94
 
 0800b854 <dwtIpInit>:
 
@@ -23386,18 +23386,18 @@ __STATIC_INLINE const char *devIdToStr(uint16_t dev_id)
  800bb08:	46bd      	mov	sp, r7
  800bb0a:	f85d 7b04 	ldr.w	r7, [sp], #4
  800bb0e:	4770      	bx	lr
- 800bb10:	08015ab8 	.word	0x08015ab8
- 800bb14:	08015ac8 	.word	0x08015ac8
- 800bb18:	08015ad8 	.word	0x08015ad8
- 800bb1c:	08015ae8 	.word	0x08015ae8
- 800bb20:	08015af8 	.word	0x08015af8
- 800bb24:	08015b04 	.word	0x08015b04
- 800bb28:	08015b10 	.word	0x08015b10
- 800bb2c:	08015b1c 	.word	0x08015b1c
- 800bb30:	08015b28 	.word	0x08015b28
- 800bb34:	08015b38 	.word	0x08015b38
- 800bb38:	08015b44 	.word	0x08015b44
- 800bb3c:	08015b60 	.word	0x08015b60
+ 800bb10:	08015ab4 	.word	0x08015ab4
+ 800bb14:	08015ac4 	.word	0x08015ac4
+ 800bb18:	08015ad4 	.word	0x08015ad4
+ 800bb1c:	08015ae4 	.word	0x08015ae4
+ 800bb20:	08015af4 	.word	0x08015af4
+ 800bb24:	08015b00 	.word	0x08015b00
+ 800bb28:	08015b0c 	.word	0x08015b0c
+ 800bb2c:	08015b18 	.word	0x08015b18
+ 800bb30:	08015b24 	.word	0x08015b24
+ 800bb34:	08015b34 	.word	0x08015b34
+ 800bb38:	08015b40 	.word	0x08015b40
+ 800bb3c:	08015b5c 	.word	0x08015b5c
 
 0800bb40 <bitToStr>:
 
@@ -23424,8 +23424,8 @@ __STATIC_INLINE const char* bitToStr(uint32_t val)
  800bb58:	46bd      	mov	sp, r7
  800bb5a:	f85d 7b04 	ldr.w	r7, [sp], #4
  800bb5e:	4770      	bx	lr
- 800bb60:	08015b68 	.word	0x08015b68
- 800bb64:	08015b70 	.word	0x08015b70
+ 800bb60:	08015b64 	.word	0x08015b64
+ 800bb64:	08015b6c 	.word	0x08015b6c
 
 0800bb68 <getFlashCacheConf>:
 
@@ -23656,18 +23656,18 @@ void logDeviceConf(void)
  800bcd0:	46bd      	mov	sp, r7
  800bcd2:	bdb0      	pop	{r4, r5, r7, pc}
  800bcd4:	40023c00 	.word	0x40023c00
- 800bcd8:	08015b78 	.word	0x08015b78
- 800bcdc:	08015b98 	.word	0x08015b98
- 800bce0:	08015bcc 	.word	0x08015bcc
- 800bce4:	08015bd8 	.word	0x08015bd8
- 800bce8:	08015be4 	.word	0x08015be4
+ 800bcd8:	08015b74 	.word	0x08015b74
+ 800bcdc:	08015b94 	.word	0x08015b94
+ 800bce0:	08015bc8 	.word	0x08015bc8
+ 800bce4:	08015bd4 	.word	0x08015bd4
+ 800bce8:	08015be0 	.word	0x08015be0
  800bcec:	20000910 	.word	0x20000910
- 800bcf0:	08015c04 	.word	0x08015c04
+ 800bcf0:	08015c00 	.word	0x08015c00
  800bcf4:	431bde83 	.word	0x431bde83
- 800bcf8:	08015c20 	.word	0x08015c20
+ 800bcf8:	08015c1c 	.word	0x08015c1c
  800bcfc:	e000ed00 	.word	0xe000ed00
- 800bd00:	08015c3c 	.word	0x08015c3c
- 800bd04:	08015c7c 	.word	0x08015c7c
+ 800bd00:	08015c38 	.word	0x08015c38
+ 800bd04:	08015c78 	.word	0x08015c78
 
 0800bd08 <disableInts>:
 
@@ -23789,7 +23789,7 @@ int _write(int fd, const void *buff, int count)
  800bda8:	46bd      	mov	sp, r7
  800bdaa:	bd80      	pop	{r7, pc}
  800bdac:	20000011 	.word	0x20000011
- 800bdb0:	20000bdc 	.word	0x20000bdc
+ 800bdb0:	20000b58 	.word	0x20000b58
 
 0800bdb4 <aiLogErr>:
  * AI-related functions
@@ -23837,8 +23837,8 @@ void aiLogErr(const ai_error err, const char *fct)
  800bdee:	46bd      	mov	sp, r7
  800bdf0:	bd80      	pop	{r7, pc}
  800bdf2:	bf00      	nop
- 800bdf4:	08015c9c 	.word	0x08015c9c
- 800bdf8:	08015cc4 	.word	0x08015cc4
+ 800bdf4:	08015c98 	.word	0x08015c98
+ 800bdf8:	08015cc0 	.word	0x08015cc0
 
 0800bdfc <aiBufferSize>:
 
@@ -24170,10 +24170,10 @@ __STATIC_INLINE void aiPrintLayoutBuffer(const char *msg, int idx,
  800c09e:	685b      	ldr	r3, [r3, #4]
  800c0a0:	e009      	b.n	800c0b6 <aiPrintLayoutBuffer+0x28e>
  800c0a2:	bf00      	nop
- 800c0a4:	08015ce4 	.word	0x08015ce4
- 800c0a8:	08015cec 	.word	0x08015cec
- 800c0ac:	08015cf0 	.word	0x08015cf0
- 800c0b0:	08015cf4 	.word	0x08015cf4
+ 800c0a4:	08015ce0 	.word	0x08015ce0
+ 800c0a8:	08015ce8 	.word	0x08015ce8
+ 800c0ac:	08015cec 	.word	0x08015cec
+ 800c0b0:	08015cf0 	.word	0x08015cf0
  800c0b4:	2300      	movs	r3, #0
  800c0b6:	685b      	ldr	r3, [r3, #4]
  800c0b8:	2b00      	cmp	r3, #0
@@ -24344,13 +24344,13 @@ __STATIC_INLINE void aiPrintLayoutBuffer(const char *msg, int idx,
  800c1ee:	46bd      	mov	sp, r7
  800c1f0:	bd80      	pop	{r7, pc}
  800c1f2:	bf00      	nop
- 800c1f4:	08015cfc 	.word	0x08015cfc
- 800c1f8:	08015d10 	.word	0x08015d10
- 800c1fc:	08015d18 	.word	0x08015d18
- 800c200:	08015d24 	.word	0x08015d24
- 800c204:	08015d2c 	.word	0x08015d2c
- 800c208:	08015d4c 	.word	0x08015d4c
- 800c20c:	08015d5c 	.word	0x08015d5c
+ 800c1f4:	08015cf8 	.word	0x08015cf8
+ 800c1f8:	08015d0c 	.word	0x08015d0c
+ 800c1fc:	08015d14 	.word	0x08015d14
+ 800c200:	08015d20 	.word	0x08015d20
+ 800c204:	08015d28 	.word	0x08015d28
+ 800c208:	08015d48 	.word	0x08015d48
+ 800c20c:	08015d58 	.word	0x08015d58
 
 0800c210 <aiPrintNetworkInfo>:
 
@@ -24538,21 +24538,21 @@ void aiPrintNetworkInfo(const ai_network_report* report)
  800c34a:	46bd      	mov	sp, r7
  800c34c:	bd80      	pop	{r7, pc}
  800c34e:	bf00      	nop
- 800c350:	08015d60 	.word	0x08015d60
- 800c354:	08015d7c 	.word	0x08015d7c
- 800c358:	08015d98 	.word	0x08015d98
- 800c35c:	08015db4 	.word	0x08015db4
- 800c360:	08015dd0 	.word	0x08015dd0
- 800c364:	08015dec 	.word	0x08015dec
- 800c368:	08015e14 	.word	0x08015e14
- 800c36c:	08015e3c 	.word	0x08015e3c
- 800c370:	08015e50 	.word	0x08015e50
- 800c374:	08015e6c 	.word	0x08015e6c
- 800c378:	08015e90 	.word	0x08015e90
- 800c37c:	08015eb4 	.word	0x08015eb4
- 800c380:	08015ed8 	.word	0x08015ed8
- 800c384:	08015ef8 	.word	0x08015ef8
- 800c388:	08015f00 	.word	0x08015f00
+ 800c350:	08015d5c 	.word	0x08015d5c
+ 800c354:	08015d78 	.word	0x08015d78
+ 800c358:	08015d94 	.word	0x08015d94
+ 800c35c:	08015db0 	.word	0x08015db0
+ 800c360:	08015dcc 	.word	0x08015dcc
+ 800c364:	08015de8 	.word	0x08015de8
+ 800c368:	08015e10 	.word	0x08015e10
+ 800c36c:	08015e38 	.word	0x08015e38
+ 800c370:	08015e4c 	.word	0x08015e4c
+ 800c374:	08015e68 	.word	0x08015e68
+ 800c378:	08015e8c 	.word	0x08015e8c
+ 800c37c:	08015eb0 	.word	0x08015eb0
+ 800c380:	08015ed4 	.word	0x08015ed4
+ 800c384:	08015ef4 	.word	0x08015ef4
+ 800c388:	08015efc 	.word	0x08015efc
 
 0800c38c <aiTestHeader>:
  * Test-related functions
@@ -24597,10 +24597,10 @@ void aiTestHeader(const char* tname, int major, int minor)
  800c3be:	3710      	adds	r7, #16
  800c3c0:	46bd      	mov	sp, r7
  800c3c2:	bd80      	pop	{r7, pc}
- 800c3c4:	08015f08 	.word	0x08015f08
- 800c3c8:	08015f10 	.word	0x08015f10
- 800c3cc:	08015f20 	.word	0x08015f20
- 800c3d0:	08015f24 	.word	0x08015f24
+ 800c3c4:	08015f04 	.word	0x08015f04
+ 800c3c8:	08015f0c 	.word	0x08015f0c
+ 800c3cc:	08015f1c 	.word	0x08015f1c
+ 800c3d0:	08015f20 	.word	0x08015f20
 
 0800c3d4 <write_packet>:
 static struct o_packet {
@@ -24638,7 +24638,7 @@ static bool write_packet(void) {
  800c3fc:	46bd      	mov	sp, r7
  800c3fe:	bd80      	pop	{r7, pc}
  800c400:	20000914 	.word	0x20000914
- 800c404:	20000bdc 	.word	0x20000bdc
+ 800c404:	20000b58 	.word	0x20000b58
 
 0800c408 <ioFlushWrite>:
 
@@ -24790,7 +24790,7 @@ static bool read_packet(void) {
  800c4d4:	bd80      	pop	{r7, pc}
  800c4d6:	bf00      	nop
  800c4d8:	20000938 	.word	0x20000938
- 800c4dc:	20000bdc 	.word	0x20000bdc
+ 800c4dc:	20000b58 	.word	0x20000b58
  800c4e0:	2000095c 	.word	0x2000095c
 
 0800c4e4 <ioFlushRead>:
@@ -24939,7 +24939,7 @@ static bool read_callback(pb_istream_t *stream, uint8_t *buf, size_t count)
  800c5ba:	bf00      	nop
  800c5bc:	20000938 	.word	0x20000938
  800c5c0:	2000095c 	.word	0x2000095c
- 800c5c4:	20000bdc 	.word	0x20000bdc
+ 800c5c4:	20000b58 	.word	0x20000b58
 
 0800c5c8 <pb_ostream_to_uart>:
 }
@@ -25607,14 +25607,14 @@ static int aiBootstrap(const char *nn_name, const int idx)
  800ca32:	46bd      	mov	sp, r7
  800ca34:	bd80      	pop	{r7, pc}
  800ca36:	bf00      	nop
- 800ca38:	08015f44 	.word	0x08015f44
+ 800ca38:	08015f40 	.word	0x08015f40
  800ca3c:	20000960 	.word	0x20000960
- 800ca40:	08015f64 	.word	0x08015f64
- 800ca44:	08015f78 	.word	0x08015f78
+ 800ca40:	08015f60 	.word	0x08015f60
+ 800ca44:	08015f74 	.word	0x08015f74
  800ca48:	40000040 	.word	0x40000040
  800ca4c:	20000a58 	.word	0x20000a58
- 800ca50:	08015f94 	.word	0x08015f94
- 800ca54:	08015fa8 	.word	0x08015fa8
+ 800ca50:	08015f90 	.word	0x08015f90
+ 800ca54:	08015fa4 	.word	0x08015fa4
 
 0800ca58 <aiInspectorGetReport>:
 
@@ -26148,9 +26148,9 @@ static int aiInit(void)
  800cd6a:	46bd      	mov	sp, r7
  800cd6c:	bd80      	pop	{r7, pc}
  800cd6e:	bf00      	nop
- 800cd70:	08015fc0 	.word	0x08015fc0
+ 800cd70:	08015fbc 	.word	0x08015fbc
  800cd74:	20000960 	.word	0x20000960
- 800cd78:	08015ff4 	.word	0x08015ff4
+ 800cd78:	08015ff0 	.word	0x08015ff0
 
 0800cd7c <aiPbCmdNNInfo>:
  * Specific APP/test functions
@@ -26701,7 +26701,7 @@ void aiPbCmdNNRun(const reqMsg *req, respMsg *resp, void *param)
  800d13a:	bf00      	nop
  800d13c:	20000014 	.word	0x20000014
  800d140:	20000018 	.word	0x20000018
- 800d144:	08016040 	.word	0x08016040
+ 800d144:	0801603c 	.word	0x0801603c
 
 0800d148 <aiValidationInit>:
 #endif
@@ -26736,13 +26736,13 @@ int aiValidationInit(void)
  800d16c:	bd80      	pop	{r7, pc}
  800d16e:	bf00      	nop
  800d170:	2000001c 	.word	0x2000001c
- 800d174:	08016050 	.word	0x08016050
+ 800d174:	0801604c 	.word	0x0801604c
 
 0800d178 <prj_AI_init>:
+    printf("\r\n");
+    aiDeInit();
     printf("bye bye ...\r\n");
 }
-
-// CUSTOM USER CODE - PROJET
 
 void prj_AI_init(void) {
  800d178:	b580      	push	{r7, lr}
@@ -26779,7 +26779,7 @@ bool prj_AI_process(float p_input[1][1][prj_AI_INPUT_NUMBER], float p_output[1][
  800d1a8:	643b      	str	r3, [r7, #64]	; 0x40
  800d1aa:	2300      	movs	r3, #0
  800d1ac:	647b      	str	r3, [r7, #68]	; 0x44
-		1, 1, 1, 100,
+		1, 1, 1, prj_AI_INPUT_NUMBER,
 		(ai_handle)p_input,
 	NULL
     };
@@ -26799,7 +26799,7 @@ bool prj_AI_process(float p_input[1][1][prj_AI_INPUT_NUMBER], float p_output[1][
  800d1c4:	62bb      	str	r3, [r7, #40]	; 0x28
  800d1c6:	2300      	movs	r3, #0
  800d1c8:	62fb      	str	r3, [r7, #44]	; 0x2c
-    	1, 1, 1, 3,
+    	1, 1, 1, prj_AI_OUTPUT_NUMBER,
 		(ai_handle)p_output,
 	NULL
     };
@@ -26919,18 +26919,18 @@ bool prj_AI_process(float p_input[1][1][prj_AI_INPUT_NUMBER], float p_output[1][
  800d29e:	bf00      	nop
  800d2a0:	01821040 	.word	0x01821040
  800d2a4:	20000960 	.word	0x20000960
- 800d2a8:	080161a0 	.word	0x080161a0
- 800d2ac:	080161c4 	.word	0x080161c4
- 800d2b0:	080161cc 	.word	0x080161cc
- 800d2b4:	080161d4 	.word	0x080161d4
- 800d2b8:	080161f4 	.word	0x080161f4
- 800d2bc:	0801620c 	.word	0x0801620c
- 800d2c0:	08016224 	.word	0x08016224
- 800d2c4:	08016240 	.word	0x08016240
- 800d2c8:	0801625c 	.word	0x0801625c
- 800d2cc:	08016284 	.word	0x08016284
- 800d2d0:	08016290 	.word	0x08016290
- 800d2d4:	080162a0 	.word	0x080162a0
+ 800d2a8:	0801619c 	.word	0x0801619c
+ 800d2ac:	080161c0 	.word	0x080161c0
+ 800d2b0:	080161c8 	.word	0x080161c8
+ 800d2b4:	080161d0 	.word	0x080161d0
+ 800d2b8:	080161f0 	.word	0x080161f0
+ 800d2bc:	08016208 	.word	0x08016208
+ 800d2c0:	08016220 	.word	0x08016220
+ 800d2c4:	0801623c 	.word	0x0801623c
+ 800d2c8:	08016258 	.word	0x08016258
+ 800d2cc:	08016280 	.word	0x08016280
+ 800d2d0:	0801628c 	.word	0x0801628c
+ 800d2d4:	0801629c 	.word	0x0801629c
 
 0800d2d8 <MX_X_CUBE_AI_Init>:
 
@@ -27074,7 +27074,7 @@ struct network_instance *ai_mnetwork_handle(struct network_instance *inst)
  800d3a8:	46bd      	mov	sp, r7
  800d3aa:	f85d 7b04 	ldr.w	r7, [sp], #4
  800d3ae:	4770      	bx	lr
- 800d3b0:	20000b18 	.word	0x20000b18
+ 800d3b0:	20000a94 	.word	0x20000a94
 
 0800d3b4 <ai_mnetwork_release_handle>:
 
@@ -27130,7 +27130,7 @@ void ai_mnetwork_release_handle(struct network_instance *inst)
  800d400:	f85d 7b04 	ldr.w	r7, [sp], #4
  800d404:	4770      	bx	lr
  800d406:	bf00      	nop
- 800d408:	20000b18 	.word	0x20000b18
+ 800d408:	20000a94 	.word	0x20000a94
 
 0800d40c <ai_mnetwork_find>:
 
@@ -27196,7 +27196,7 @@ const char* ai_mnetwork_find(const char *name, ai_int idx)
  800d462:	46bd      	mov	sp, r7
  800d464:	bd80      	pop	{r7, pc}
  800d466:	bf00      	nop
- 800d468:	0801662c 	.word	0x0801662c
+ 800d468:	08016628 	.word	0x08016628
 
 0800d46c <ai_mnetwork_create>:
 
@@ -27343,7 +27343,7 @@ ai_error ai_mnetwork_create(const char *name, ai_handle* network,
  800d53a:	3728      	adds	r7, #40	; 0x28
  800d53c:	46bd      	mov	sp, r7
  800d53e:	bd80      	pop	{r7, pc}
- 800d540:	0801662c 	.word	0x0801662c
+ 800d540:	08016628 	.word	0x08016628
 
 0800d544 <ai_mnetwork_destroy>:
 
@@ -27777,24 +27777,24 @@ ai_bool network_configure_activations(
  800d7b0:	4a14      	ldr	r2, [pc, #80]	; (800d804 <network_configure_activations+0x88>)
  800d7b2:	68fb      	ldr	r3, [r7, #12]
  800d7b4:	60d3      	str	r3, [r2, #12]
-    dense_1_output_array.data = AI_PTR(activations + 96);
+    dense_1_output_array.data = AI_PTR(activations + 20);
  800d7b6:	68fb      	ldr	r3, [r7, #12]
- 800d7b8:	3360      	adds	r3, #96	; 0x60
+ 800d7b8:	3314      	adds	r3, #20
  800d7ba:	4a13      	ldr	r2, [pc, #76]	; (800d808 <network_configure_activations+0x8c>)
  800d7bc:	6093      	str	r3, [r2, #8]
-    dense_1_output_array.data_start = AI_PTR(activations + 96);
+    dense_1_output_array.data_start = AI_PTR(activations + 20);
  800d7be:	68fb      	ldr	r3, [r7, #12]
- 800d7c0:	3360      	adds	r3, #96	; 0x60
+ 800d7c0:	3314      	adds	r3, #20
  800d7c2:	4a11      	ldr	r2, [pc, #68]	; (800d808 <network_configure_activations+0x8c>)
  800d7c4:	60d3      	str	r3, [r2, #12]
-    nl_1_output_array.data = AI_PTR(activations + 96);
+    nl_1_output_array.data = AI_PTR(activations + 20);
  800d7c6:	68fb      	ldr	r3, [r7, #12]
- 800d7c8:	3360      	adds	r3, #96	; 0x60
+ 800d7c8:	3314      	adds	r3, #20
  800d7ca:	4a10      	ldr	r2, [pc, #64]	; (800d80c <network_configure_activations+0x90>)
  800d7cc:	6093      	str	r3, [r2, #8]
-    nl_1_output_array.data_start = AI_PTR(activations + 96);
+    nl_1_output_array.data_start = AI_PTR(activations + 20);
  800d7ce:	68fb      	ldr	r3, [r7, #12]
- 800d7d0:	3360      	adds	r3, #96	; 0x60
+ 800d7d0:	3314      	adds	r3, #20
  800d7d2:	4a0e      	ldr	r2, [pc, #56]	; (800d80c <network_configure_activations+0x90>)
  800d7d4:	60d3      	str	r3, [r2, #12]
     dense_2_output_array.data = AI_PTR(activations + 0);
@@ -27860,14 +27860,14 @@ ai_bool network_configure_weights(
  800d82c:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
  800d830:	4a2f      	ldr	r2, [pc, #188]	; (800d8f0 <network_configure_weights+0xd8>)
  800d832:	6013      	str	r3, [r2, #0]
-    dense_2_bias_array.data = AI_PTR(weights + 2096);
+    dense_2_bias_array.data = AI_PTR(weights + 592);
  800d834:	68fb      	ldr	r3, [r7, #12]
- 800d836:	f503 6303 	add.w	r3, r3, #2096	; 0x830
+ 800d836:	f503 7314 	add.w	r3, r3, #592	; 0x250
  800d83a:	4a2d      	ldr	r2, [pc, #180]	; (800d8f0 <network_configure_weights+0xd8>)
  800d83c:	6093      	str	r3, [r2, #8]
-    dense_2_bias_array.data_start = AI_PTR(weights + 2096);
+    dense_2_bias_array.data_start = AI_PTR(weights + 592);
  800d83e:	68fb      	ldr	r3, [r7, #12]
- 800d840:	f503 6303 	add.w	r3, r3, #2096	; 0x830
+ 800d840:	f503 7314 	add.w	r3, r3, #592	; 0x250
  800d844:	4a2a      	ldr	r2, [pc, #168]	; (800d8f0 <network_configure_weights+0xd8>)
  800d846:	60d3      	str	r3, [r2, #12]
     dense_2_weights_array.format |= AI_FMT_FLAG_CONST;
@@ -27876,14 +27876,14 @@ ai_bool network_configure_weights(
  800d84c:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
  800d850:	4a28      	ldr	r2, [pc, #160]	; (800d8f4 <network_configure_weights+0xdc>)
  800d852:	6013      	str	r3, [r2, #0]
-    dense_2_weights_array.data = AI_PTR(weights + 1808);
+    dense_2_weights_array.data = AI_PTR(weights + 472);
  800d854:	68fb      	ldr	r3, [r7, #12]
- 800d856:	f503 63e2 	add.w	r3, r3, #1808	; 0x710
+ 800d856:	f503 73ec 	add.w	r3, r3, #472	; 0x1d8
  800d85a:	4a26      	ldr	r2, [pc, #152]	; (800d8f4 <network_configure_weights+0xdc>)
  800d85c:	6093      	str	r3, [r2, #8]
-    dense_2_weights_array.data_start = AI_PTR(weights + 1808);
+    dense_2_weights_array.data_start = AI_PTR(weights + 472);
  800d85e:	68fb      	ldr	r3, [r7, #12]
- 800d860:	f503 63e2 	add.w	r3, r3, #1808	; 0x710
+ 800d860:	f503 73ec 	add.w	r3, r3, #472	; 0x1d8
  800d864:	4a23      	ldr	r2, [pc, #140]	; (800d8f4 <network_configure_weights+0xdc>)
  800d866:	60d3      	str	r3, [r2, #12]
     dense_1_bias_array.format |= AI_FMT_FLAG_CONST;
@@ -27892,14 +27892,14 @@ ai_bool network_configure_weights(
  800d86c:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
  800d870:	4a21      	ldr	r2, [pc, #132]	; (800d8f8 <network_configure_weights+0xe0>)
  800d872:	6013      	str	r3, [r2, #0]
-    dense_1_bias_array.data = AI_PTR(weights + 1712);
+    dense_1_bias_array.data = AI_PTR(weights + 432);
  800d874:	68fb      	ldr	r3, [r7, #12]
- 800d876:	f503 63d6 	add.w	r3, r3, #1712	; 0x6b0
+ 800d876:	f503 73d8 	add.w	r3, r3, #432	; 0x1b0
  800d87a:	4a1f      	ldr	r2, [pc, #124]	; (800d8f8 <network_configure_weights+0xe0>)
  800d87c:	6093      	str	r3, [r2, #8]
-    dense_1_bias_array.data_start = AI_PTR(weights + 1712);
+    dense_1_bias_array.data_start = AI_PTR(weights + 432);
  800d87e:	68fb      	ldr	r3, [r7, #12]
- 800d880:	f503 63d6 	add.w	r3, r3, #1712	; 0x6b0
+ 800d880:	f503 73d8 	add.w	r3, r3, #432	; 0x1b0
  800d884:	4a1c      	ldr	r2, [pc, #112]	; (800d8f8 <network_configure_weights+0xe0>)
  800d886:	60d3      	str	r3, [r2, #12]
     dense_1_weights_array.format |= AI_FMT_FLAG_CONST;
@@ -27908,14 +27908,14 @@ ai_bool network_configure_weights(
  800d88c:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
  800d890:	4a1a      	ldr	r2, [pc, #104]	; (800d8fc <network_configure_weights+0xe4>)
  800d892:	6013      	str	r3, [r2, #0]
-    dense_1_weights_array.data = AI_PTR(weights + 1424);
+    dense_1_weights_array.data = AI_PTR(weights + 400);
  800d894:	68fb      	ldr	r3, [r7, #12]
- 800d896:	f503 63b2 	add.w	r3, r3, #1424	; 0x590
+ 800d896:	f503 73c8 	add.w	r3, r3, #400	; 0x190
  800d89a:	4a18      	ldr	r2, [pc, #96]	; (800d8fc <network_configure_weights+0xe4>)
  800d89c:	6093      	str	r3, [r2, #8]
-    dense_1_weights_array.data_start = AI_PTR(weights + 1360);
+    dense_1_weights_array.data_start = AI_PTR(weights + 336);
  800d89e:	68fb      	ldr	r3, [r7, #12]
- 800d8a0:	f503 63aa 	add.w	r3, r3, #1360	; 0x550
+ 800d8a0:	f503 73a8 	add.w	r3, r3, #336	; 0x150
  800d8a4:	4a15      	ldr	r2, [pc, #84]	; (800d8fc <network_configure_weights+0xe4>)
  800d8a6:	60d3      	str	r3, [r2, #12]
     dense_0_bias_array.format |= AI_FMT_FLAG_CONST;
@@ -27924,14 +27924,14 @@ ai_bool network_configure_weights(
  800d8ac:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
  800d8b0:	4a13      	ldr	r2, [pc, #76]	; (800d900 <network_configure_weights+0xe8>)
  800d8b2:	6013      	str	r3, [r2, #0]
-    dense_0_bias_array.data = AI_PTR(weights + 1264);
+    dense_0_bias_array.data = AI_PTR(weights + 316);
  800d8b4:	68fb      	ldr	r3, [r7, #12]
- 800d8b6:	f503 639e 	add.w	r3, r3, #1264	; 0x4f0
+ 800d8b6:	f503 739e 	add.w	r3, r3, #316	; 0x13c
  800d8ba:	4a11      	ldr	r2, [pc, #68]	; (800d900 <network_configure_weights+0xe8>)
  800d8bc:	6093      	str	r3, [r2, #8]
-    dense_0_bias_array.data_start = AI_PTR(weights + 1264);
+    dense_0_bias_array.data_start = AI_PTR(weights + 316);
  800d8be:	68fb      	ldr	r3, [r7, #12]
- 800d8c0:	f503 639e 	add.w	r3, r3, #1264	; 0x4f0
+ 800d8c0:	f503 739e 	add.w	r3, r3, #316	; 0x13c
  800d8c4:	4a0e      	ldr	r2, [pc, #56]	; (800d900 <network_configure_weights+0xe8>)
  800d8c6:	60d3      	str	r3, [r2, #12]
     dense_0_weights_array.format |= AI_FMT_FLAG_CONST;
@@ -28032,7 +28032,7 @@ ai_bool ai_network_get_info(
  800d972:	f7f2 ff87 	bl	8000884 <ai_platform_interface_api_get_version>
  800d976:	4603      	mov	r3, r0
  800d978:	633b      	str	r3, [r7, #48]	; 0x30
- 800d97a:	f640 4336 	movw	r3, #3126	; 0xc36
+ 800d97a:	f240 2371 	movw	r3, #625	; 0x271
  800d97e:	637b      	str	r3, [r7, #52]	; 0x34
       .params            = AI_STRUCT_INIT,
       .n_nodes           = 0,
@@ -28072,11 +28072,11 @@ ai_bool ai_network_get_info(
  800d9b6:	46bd      	mov	sp, r7
  800d9b8:	bd80      	pop	{r7, pc}
  800d9ba:	bf00      	nop
- 800d9bc:	080162d0 	.word	0x080162d0
- 800d9c0:	080162d8 	.word	0x080162d8
- 800d9c4:	080162fc 	.word	0x080162fc
- 800d9c8:	08016318 	.word	0x08016318
- 800d9cc:	08016330 	.word	0x08016330
+ 800d9bc:	080162cc 	.word	0x080162cc
+ 800d9c0:	080162d4 	.word	0x080162d4
+ 800d9c4:	080162f8 	.word	0x080162f8
+ 800d9c8:	08016314 	.word	0x08016314
+ 800d9cc:	0801632c 	.word	0x0801632c
 
 0800d9d0 <ai_network_get_error>:
 
@@ -28266,9 +28266,9 @@ ai_handle ai_network_data_weights_get(void)
 {
  800dad0:	b480      	push	{r7}
  800dad2:	af00      	add	r7, sp, #0
-    0x62, 0xaf, 0x89, 0x3e, 0xb8, 0xf7, 0x0a, 0xbe, 0x9b, 0x4c,
-    0xa6, 0xbd, 0x82, 0xff, 0x17, 0xbf, 0xf2, 0xf3, 0x38,
-    0x3e, 0xde, 0x31, 0x8a, 0xbe, 0x88, 0x6b, 0xd2, 0xbd
+    0x73, 0xb1, 0xbe, 0x3c, 0x58, 0x15, 0x3f, 0x79, 0xb3,
+    0x75, 0xbf, 0xc6, 0x3b, 0xae, 0xbf, 0x39, 0x0d, 0x06,
+    0x3e, 0x31, 0xa2, 0x76, 0xbf, 0x99, 0x37, 0x7e, 0x3e
   };
 
   return AI_HANDLE_PTR(s_network_weights);
@@ -28279,7 +28279,7 @@ ai_handle ai_network_data_weights_get(void)
  800dad8:	46bd      	mov	sp, r7
  800dada:	f85d 7b04 	ldr.w	r7, [sp], #4
  800dade:	4770      	bx	lr
- 800dae0:	080166bc 	.word	0x080166bc
+ 800dae0:	080166b8 	.word	0x080166b8
 
 0800dae4 <pb_field_iter_begin>:
  */
@@ -28780,8 +28780,8 @@ bool checkreturn pb_read(pb_istream_t *stream, pb_byte_t *buf, size_t count)
  800ddbc:	bd80      	pop	{r7, pc}
  800ddbe:	bf00      	nop
  800ddc0:	0800dca7 	.word	0x0800dca7
- 800ddc4:	0801633c 	.word	0x0801633c
- 800ddc8:	0801634c 	.word	0x0801634c
+ 800ddc4:	08016338 	.word	0x08016338
+ 800ddc8:	08016348 	.word	0x08016348
 
 0800ddcc <pb_readbyte>:
 
@@ -28859,8 +28859,8 @@ static bool checkreturn pb_readbyte(pb_istream_t *stream, pb_byte_t *buf)
  800de36:	46bd      	mov	sp, r7
  800de38:	bd80      	pop	{r7, pc}
  800de3a:	bf00      	nop
- 800de3c:	0801633c 	.word	0x0801633c
- 800de40:	0801634c 	.word	0x0801634c
+ 800de3c:	08016338 	.word	0x08016338
+ 800de40:	08016348 	.word	0x08016348
 
 0800de44 <pb_istream_from_buffer>:
 
@@ -29100,7 +29100,7 @@ static bool checkreturn pb_decode_varint32_eof(pb_istream_t *stream, uint32_t *d
  800df8a:	46bd      	mov	sp, r7
  800df8c:	bd80      	pop	{r7, pc}
  800df8e:	bf00      	nop
- 800df90:	08016358 	.word	0x08016358
+ 800df90:	08016354 	.word	0x08016354
 
 0800df94 <pb_decode_varint32>:
 
@@ -29219,7 +29219,7 @@ bool checkreturn pb_decode_varint(pb_istream_t *stream, uint64_t *dest)
  800e06c:	3720      	adds	r7, #32
  800e06e:	46bd      	mov	sp, r7
  800e070:	e8bd 88f0 	ldmia.w	sp!, {r4, r5, r6, r7, fp, pc}
- 800e074:	08016358 	.word	0x08016358
+ 800e074:	08016354 	.word	0x08016354
 
 0800e078 <pb_skip_varint>:
 #endif
@@ -29438,7 +29438,7 @@ bool checkreturn pb_skip_field(pb_istream_t *stream, pb_wire_type_t wire_type)
  800e1d2:	46bd      	mov	sp, r7
  800e1d4:	bd80      	pop	{r7, pc}
  800e1d6:	bf00      	nop
- 800e1d8:	08016368 	.word	0x08016368
+ 800e1d8:	08016364 	.word	0x08016364
 
 0800e1dc <read_raw_value>:
 
@@ -29561,7 +29561,7 @@ static bool checkreturn read_raw_value(pb_istream_t *stream, pb_wire_type_t wire
  800e28a:	3718      	adds	r7, #24
  800e28c:	46bd      	mov	sp, r7
  800e28e:	bd80      	pop	{r7, pc}
- 800e290:	08016368 	.word	0x08016368
+ 800e290:	08016364 	.word	0x08016364
 
 0800e294 <pb_make_string_substream>:
 
@@ -29634,7 +29634,7 @@ bool checkreturn pb_make_string_substream(pb_istream_t *stream, pb_istream_t *su
  800e2fe:	3714      	adds	r7, #20
  800e300:	46bd      	mov	sp, r7
  800e302:	bd90      	pop	{r4, r7, pc}
- 800e304:	0801637c 	.word	0x0801637c
+ 800e304:	08016378 	.word	0x08016378
 
 0800e308 <pb_close_string_substream>:
 
@@ -30022,9 +30022,9 @@ static bool checkreturn decode_static_field(pb_istream_t *stream, pb_wire_type_t
  800e586:	46bd      	mov	sp, r7
  800e588:	bd80      	pop	{r7, pc}
  800e58a:	bf00      	nop
- 800e58c:	08016ef8 	.word	0x08016ef8
- 800e590:	08016394 	.word	0x08016394
- 800e594:	080163a4 	.word	0x080163a4
+ 800e58c:	08016914 	.word	0x08016914
+ 800e590:	08016390 	.word	0x08016390
+ 800e594:	080163a0 	.word	0x080163a0
 
 0800e598 <decode_pointer_field>:
     }
@@ -30066,7 +30066,7 @@ static bool checkreturn decode_pointer_field(pb_istream_t *stream, pb_wire_type_
  800e5c0:	46bd      	mov	sp, r7
  800e5c2:	f85d 7b04 	ldr.w	r7, [sp], #4
  800e5c6:	4770      	bx	lr
- 800e5c8:	080163b8 	.word	0x080163b8
+ 800e5c8:	080163b4 	.word	0x080163b4
 
 0800e5cc <decode_callback_field>:
 
@@ -30230,7 +30230,7 @@ static bool checkreturn decode_callback_field(pb_istream_t *stream, pb_wire_type
  800e6d2:	46bd      	mov	sp, r7
  800e6d4:	bd90      	pop	{r4, r7, pc}
  800e6d6:	bf00      	nop
- 800e6d8:	080163cc 	.word	0x080163cc
+ 800e6d8:	080163c8 	.word	0x080163c8
 
 0800e6dc <decode_field>:
 
@@ -30310,7 +30310,7 @@ static bool checkreturn decode_field(pb_istream_t *stream, pb_wire_type_t wire_t
  800e74a:	46bd      	mov	sp, r7
  800e74c:	bd80      	pop	{r7, pc}
  800e74e:	bf00      	nop
- 800e750:	080163a4 	.word	0x080163a4
+ 800e750:	080163a0 	.word	0x080163a0
 
 0800e754 <iter_from_extension>:
 
@@ -31252,8 +31252,8 @@ bool checkreturn pb_decode_noinit(pb_istream_t *stream, const pb_field_t fields[
  800ed12:	46bd      	mov	sp, r7
  800ed14:	bd80      	pop	{r7, pc}
  800ed16:	bf00      	nop
- 800ed18:	080163dc 	.word	0x080163dc
- 800ed1c:	08016400 	.word	0x08016400
+ 800ed18:	080163d8 	.word	0x080163d8
+ 800ed1c:	080163fc 	.word	0x080163fc
 
 0800ed20 <pb_decode>:
 
@@ -31739,8 +31739,8 @@ static bool checkreturn pb_dec_varint(pb_istream_t *stream, const pb_field_t *fi
  800f09e:	46bd      	mov	sp, r7
  800f0a0:	bd90      	pop	{r4, r7, pc}
  800f0a2:	bf00      	nop
- 800f0a4:	08016418 	.word	0x08016418
- 800f0a8:	0801642c 	.word	0x0801642c
+ 800f0a4:	08016414 	.word	0x08016414
+ 800f0a8:	08016428 	.word	0x08016428
 
 0800f0ac <pb_dec_uvarint>:
 
@@ -31875,8 +31875,8 @@ static bool checkreturn pb_dec_uvarint(pb_istream_t *stream, const pb_field_t *f
  800f1aa:	3724      	adds	r7, #36	; 0x24
  800f1ac:	46bd      	mov	sp, r7
  800f1ae:	bd90      	pop	{r4, r7, pc}
- 800f1b0:	08016418 	.word	0x08016418
- 800f1b4:	0801642c 	.word	0x0801642c
+ 800f1b0:	08016414 	.word	0x08016414
+ 800f1b4:	08016428 	.word	0x08016428
 
 0800f1b8 <pb_dec_svarint>:
 
@@ -32011,8 +32011,8 @@ static bool checkreturn pb_dec_svarint(pb_istream_t *stream, const pb_field_t *f
  800f2ba:	3724      	adds	r7, #36	; 0x24
  800f2bc:	46bd      	mov	sp, r7
  800f2be:	bd90      	pop	{r4, r7, pc}
- 800f2c0:	08016418 	.word	0x08016418
- 800f2c4:	0801642c 	.word	0x0801642c
+ 800f2c0:	08016414 	.word	0x08016414
+ 800f2c4:	08016428 	.word	0x08016428
 
 0800f2c8 <pb_dec_fixed32>:
 
@@ -32203,9 +32203,9 @@ static bool checkreturn pb_dec_bytes(pb_istream_t *stream, const pb_field_t *fie
  800f3de:	46bd      	mov	sp, r7
  800f3e0:	bd80      	pop	{r7, pc}
  800f3e2:	bf00      	nop
- 800f3e4:	08016440 	.word	0x08016440
- 800f3e8:	08016450 	.word	0x08016450
- 800f3ec:	080163b8 	.word	0x080163b8
+ 800f3e4:	0801643c 	.word	0x0801643c
+ 800f3e8:	0801644c 	.word	0x0801644c
+ 800f3ec:	080163b4 	.word	0x080163b4
 
 0800f3f0 <pb_dec_string>:
 
@@ -32330,9 +32330,9 @@ static bool checkreturn pb_dec_string(pb_istream_t *stream, const pb_field_t *fi
  800f4aa:	46bd      	mov	sp, r7
  800f4ac:	bd80      	pop	{r7, pc}
  800f4ae:	bf00      	nop
- 800f4b0:	08016450 	.word	0x08016450
- 800f4b4:	080163b8 	.word	0x080163b8
- 800f4b8:	08016460 	.word	0x08016460
+ 800f4b0:	0801644c 	.word	0x0801644c
+ 800f4b4:	080163b4 	.word	0x080163b4
+ 800f4b8:	0801645c 	.word	0x0801645c
 
 0800f4bc <pb_dec_submessage>:
 
@@ -32431,7 +32431,7 @@ static bool checkreturn pb_dec_submessage(pb_istream_t *stream, const pb_field_t
  800f566:	3728      	adds	r7, #40	; 0x28
  800f568:	46bd      	mov	sp, r7
  800f56a:	bd80      	pop	{r7, pc}
- 800f56c:	08016470 	.word	0x08016470
+ 800f56c:	0801646c 	.word	0x0801646c
 
 0800f570 <pb_dec_fixed_length_bytes>:
 
@@ -32532,8 +32532,8 @@ static bool checkreturn pb_dec_fixed_length_bytes(pb_istream_t *stream, const pb
  800f612:	3718      	adds	r7, #24
  800f614:	46bd      	mov	sp, r7
  800f616:	bd80      	pop	{r7, pc}
- 800f618:	08016440 	.word	0x08016440
- 800f61c:	0801648c 	.word	0x0801648c
+ 800f618:	0801643c 	.word	0x0801643c
+ 800f61c:	08016488 	.word	0x08016488
 
 0800f620 <pb_write>:
 #endif
@@ -32624,8 +32624,8 @@ bool checkreturn pb_write(pb_ostream_t *stream, const pb_byte_t *buf, size_t cou
  800f69e:	46bd      	mov	sp, r7
  800f6a0:	bd80      	pop	{r7, pc}
  800f6a2:	bf00      	nop
- 800f6a4:	080164b0 	.word	0x080164b0
- 800f6a8:	080164bc 	.word	0x080164bc
+ 800f6a4:	080164ac 	.word	0x080164ac
+ 800f6a8:	080164b8 	.word	0x080164b8
 
 0800f6ac <encode_array>:
  *************************/
@@ -32964,7 +32964,7 @@ static bool checkreturn encode_array(pb_ostream_t *stream, const pb_field_t *fie
  800f8be:	3734      	adds	r7, #52	; 0x34
  800f8c0:	46bd      	mov	sp, r7
  800f8c2:	bd90      	pop	{r4, r7, pc}
- 800f8c4:	080164c8 	.word	0x080164c8
+ 800f8c4:	080164c4 	.word	0x080164c4
 
 0800f8c8 <pb_check_proto3_default_value>:
 
@@ -33544,9 +33544,9 @@ static bool checkreturn encode_basic_field(pb_ostream_t *stream,
  800fc4e:	3720      	adds	r7, #32
  800fc50:	46bd      	mov	sp, r7
  800fc52:	bd80      	pop	{r7, pc}
- 800fc54:	08016f20 	.word	0x08016f20
- 800fc58:	080164e0 	.word	0x080164e0
- 800fc5c:	080164f8 	.word	0x080164f8
+ 800fc54:	0801693c 	.word	0x0801693c
+ 800fc58:	080164dc 	.word	0x080164dc
+ 800fc5c:	080164f4 	.word	0x080164f4
 
 0800fc60 <encode_callback_field>:
 
@@ -33613,7 +33613,7 @@ static bool checkreturn encode_callback_field(pb_ostream_t *stream,
  800fcb2:	3718      	adds	r7, #24
  800fcb4:	46bd      	mov	sp, r7
  800fcb6:	bd80      	pop	{r7, pc}
- 800fcb8:	0801650c 	.word	0x0801650c
+ 800fcb8:	08016508 	.word	0x08016508
 
 0800fcbc <encode_field>:
 
@@ -33677,7 +33677,7 @@ static bool checkreturn encode_field(pb_ostream_t *stream,
  800fd12:	46bd      	mov	sp, r7
  800fd14:	bd80      	pop	{r7, pc}
  800fd16:	bf00      	nop
- 800fd18:	080164f8 	.word	0x080164f8
+ 800fd18:	080164f4 	.word	0x080164f4
 
 0800fd1c <default_extension_encoder>:
 
@@ -34321,7 +34321,7 @@ bool checkreturn pb_encode_tag_for_field(pb_ostream_t *stream, const pb_field_t 
  801014a:	3710      	adds	r7, #16
  801014c:	46bd      	mov	sp, r7
  801014e:	bd80      	pop	{r7, pc}
- 8010150:	080164f8 	.word	0x080164f8
+ 8010150:	080164f4 	.word	0x080164f4
 
 08010154 <pb_encode_string>:
 
@@ -34538,8 +34538,8 @@ bool checkreturn pb_encode_submessage(pb_ostream_t *stream, const pb_field_t fie
  80102a2:	46bd      	mov	sp, r7
  80102a4:	bd90      	pop	{r4, r7, pc}
  80102a6:	bf00      	nop
- 80102a8:	080164b0 	.word	0x080164b0
- 80102ac:	0801651c 	.word	0x0801651c
+ 80102a8:	080164ac 	.word	0x080164ac
+ 80102ac:	08016518 	.word	0x08016518
 
 080102b0 <pb_enc_varint>:
 
@@ -34639,7 +34639,7 @@ static bool checkreturn pb_enc_varint(pb_ostream_t *stream, const pb_field_t *fi
  8010362:	46bd      	mov	sp, r7
  8010364:	bd90      	pop	{r4, r7, pc}
  8010366:	bf00      	nop
- 8010368:	08016530 	.word	0x08016530
+ 8010368:	0801652c 	.word	0x0801652c
 
 0801036c <pb_enc_uvarint>:
 
@@ -34731,7 +34731,7 @@ static bool checkreturn pb_enc_uvarint(pb_ostream_t *stream, const pb_field_t *f
  8010416:	46bd      	mov	sp, r7
  8010418:	bd90      	pop	{r4, r7, pc}
  801041a:	bf00      	nop
- 801041c:	08016530 	.word	0x08016530
+ 801041c:	0801652c 	.word	0x0801652c
 
 08010420 <pb_enc_svarint>:
 
@@ -34823,7 +34823,7 @@ static bool checkreturn pb_enc_svarint(pb_ostream_t *stream, const pb_field_t *f
  80104ce:	46bd      	mov	sp, r7
  80104d0:	bd90      	pop	{r4, r7, pc}
  80104d2:	bf00      	nop
- 80104d4:	08016530 	.word	0x08016530
+ 80104d4:	0801652c 	.word	0x0801652c
 
 080104d8 <pb_enc_fixed64>:
 
@@ -34953,7 +34953,7 @@ static bool checkreturn pb_enc_bytes(pb_ostream_t *stream, const pb_field_t *fie
  8010586:	3718      	adds	r7, #24
  8010588:	46bd      	mov	sp, r7
  801058a:	bd80      	pop	{r7, pc}
- 801058c:	08016544 	.word	0x08016544
+ 801058c:	08016540 	.word	0x08016540
 
 08010590 <pb_enc_string>:
 
@@ -35075,7 +35075,7 @@ static bool checkreturn pb_enc_submessage(pb_ostream_t *stream, const pb_field_t
  801063e:	3710      	adds	r7, #16
  8010640:	46bd      	mov	sp, r7
  8010642:	bd80      	pop	{r7, pc}
- 8010644:	08016558 	.word	0x08016558
+ 8010644:	08016554 	.word	0x08016554
 
 08010648 <pb_enc_fixed_length_bytes>:
 
@@ -35143,10 +35143,10 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  80106ba:	4798      	blx	r3
  80106bc:	3501      	adds	r5, #1
  80106be:	e7f2      	b.n	80106a6 <__libc_init_array+0x1e>
- 80106c0:	08017dd8 	.word	0x08017dd8
- 80106c4:	08017dd8 	.word	0x08017dd8
- 80106c8:	08017dd8 	.word	0x08017dd8
- 80106cc:	08017ddc 	.word	0x08017ddc
+ 80106c0:	080177f8 	.word	0x080177f8
+ 80106c4:	080177f8 	.word	0x080177f8
+ 80106c8:	080177f8 	.word	0x080177f8
+ 80106cc:	080177fc 	.word	0x080177fc
 
 080106d0 <malloc>:
  80106d0:	4b02      	ldr	r3, [pc, #8]	; (80106dc <malloc+0xc>)
@@ -35273,7 +35273,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  80107c6:	e7c7      	b.n	8010758 <_free_r+0x24>
  80107c8:	bd38      	pop	{r3, r4, r5, pc}
  80107ca:	bf00      	nop
- 80107cc:	20000bd4 	.word	0x20000bd4
+ 80107cc:	20000b50 	.word	0x20000b50
 
 080107d0 <_malloc_r>:
  80107d0:	b570      	push	{r4, r5, r6, lr}
@@ -35352,8 +35352,8 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8010876:	d0cf      	beq.n	8010818 <_malloc_r+0x48>
  8010878:	6025      	str	r5, [r4, #0]
  801087a:	e7db      	b.n	8010834 <_malloc_r+0x64>
- 801087c:	20000bd4 	.word	0x20000bd4
- 8010880:	20000bd8 	.word	0x20000bd8
+ 801087c:	20000b50 	.word	0x20000b50
+ 8010880:	20000b54 	.word	0x20000b54
 
 08010884 <__cvt>:
  8010884:	b5f0      	push	{r4, r5, r6, r7, lr}
@@ -35759,11 +35759,11 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8010c5e:	e017      	b.n	8010c90 <_printf_float+0x300>
  8010c60:	ffffffff 	.word	0xffffffff
  8010c64:	7fefffff 	.word	0x7fefffff
- 8010c68:	080179df 	.word	0x080179df
- 8010c6c:	08017368 	.word	0x08017368
- 8010c70:	08017370 	.word	0x08017370
- 8010c74:	0801736c 	.word	0x0801736c
- 8010c78:	08017374 	.word	0x08017374
+ 8010c68:	080173ff 	.word	0x080173ff
+ 8010c6c:	08016d84 	.word	0x08016d84
+ 8010c70:	08016d8c 	.word	0x08016d8c
+ 8010c74:	08016d88 	.word	0x08016d88
+ 8010c78:	08016d90 	.word	0x08016d90
  8010c7c:	2301      	movs	r3, #1
  8010c7e:	9a07      	ldr	r2, [sp, #28]
  8010c80:	4631      	mov	r1, r6
@@ -36244,8 +36244,8 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  80110e6:	f884 3042 	strb.w	r3, [r4, #66]	; 0x42
  80110ea:	f104 0542 	add.w	r5, r4, #66	; 0x42
  80110ee:	e76c      	b.n	8010fca <_printf_i+0xf6>
- 80110f0:	08017376 	.word	0x08017376
- 80110f4:	08017387 	.word	0x08017387
+ 80110f0:	08016d92 	.word	0x08016d92
+ 80110f4:	08016da3 	.word	0x08016da3
 
 080110f8 <iprintf>:
  80110f8:	b40f      	push	{r0, r1, r2, r3}
@@ -36349,9 +36349,9 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  80111ce:	7018      	strb	r0, [r3, #0]
  80111d0:	e7e5      	b.n	801119e <_puts_r+0x76>
  80111d2:	bf00      	nop
- 80111d4:	080173c8 	.word	0x080173c8
- 80111d8:	080173e8 	.word	0x080173e8
- 80111dc:	080173a8 	.word	0x080173a8
+ 80111d4:	08016de4 	.word	0x08016de4
+ 80111d8:	08016e04 	.word	0x08016e04
+ 80111dc:	08016dc4 	.word	0x08016dc4
 
 080111e0 <puts>:
  80111e0:	4b02      	ldr	r3, [pc, #8]	; (80111ec <puts+0xc>)
@@ -36383,7 +36383,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8011216:	b103      	cbz	r3, 801121a <_sbrk_r+0x1a>
  8011218:	602b      	str	r3, [r5, #0]
  801121a:	bd38      	pop	{r3, r4, r5, pc}
- 801121c:	20000e60 	.word	0x20000e60
+ 801121c:	20000ddc 	.word	0x20000ddc
 
 08011220 <strncmp>:
  8011220:	b510      	push	{r4, lr}
@@ -36475,9 +36475,9 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  80112d6:	4638      	mov	r0, r7
  80112d8:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
  80112da:	bf00      	nop
- 80112dc:	080173c8 	.word	0x080173c8
- 80112e0:	080173e8 	.word	0x080173e8
- 80112e4:	080173a8 	.word	0x080173a8
+ 80112dc:	08016de4 	.word	0x08016de4
+ 80112e0:	08016e04 	.word	0x08016e04
+ 80112e4:	08016dc4 	.word	0x08016dc4
 
 080112e8 <__swsetup_r>:
  80112e8:	4b32      	ldr	r3, [pc, #200]	; (80113b4 <__swsetup_r+0xcc>)
@@ -36569,9 +36569,9 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  80113b0:	e7f7      	b.n	80113a2 <__swsetup_r+0xba>
  80113b2:	bf00      	nop
  80113b4:	200006c8 	.word	0x200006c8
- 80113b8:	080173c8 	.word	0x080173c8
- 80113bc:	080173e8 	.word	0x080173e8
- 80113c0:	080173a8 	.word	0x080173a8
+ 80113b8:	08016de4 	.word	0x08016de4
+ 80113bc:	08016e04 	.word	0x08016e04
+ 80113c0:	08016dc4 	.word	0x08016dc4
 
 080113c4 <quorem>:
  80113c4:	e92d 4ff7 	stmdb	sp!, {r0, r1, r2, r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -36962,11 +36962,11 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  80117e8:	509f79fb 	.word	0x509f79fb
  80117ec:	3fd34413 	.word	0x3fd34413
  80117f0:	7ff00000 	.word	0x7ff00000
- 80117f4:	080173a1 	.word	0x080173a1
- 80117f8:	08017398 	.word	0x08017398
- 80117fc:	08017375 	.word	0x08017375
- 8011800:	08017430 	.word	0x08017430
- 8011804:	08017408 	.word	0x08017408
+ 80117f4:	08016dbd 	.word	0x08016dbd
+ 80117f8:	08016db4 	.word	0x08016db4
+ 80117fc:	08016d91 	.word	0x08016d91
+ 8011800:	08016e50 	.word	0x08016e50
+ 8011804:	08016e28 	.word	0x08016e28
  8011808:	07de      	lsls	r6, r3, #31
  801180a:	d504      	bpl.n	8011816 <_dtoa_r+0x336>
  801180c:	ed91 6b00 	vldr	d6, [r1]
@@ -37310,8 +37310,8 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8011bd6:	2001      	movs	r0, #1
  8011bd8:	e034      	b.n	8011c44 <_dtoa_r+0x764>
  8011bda:	bf00      	nop
- 8011bdc:	08017430 	.word	0x08017430
- 8011be0:	08017408 	.word	0x08017408
+ 8011bdc:	08016e50 	.word	0x08016e50
+ 8011be0:	08016e28 	.word	0x08016e28
  8011be4:	9b12      	ldr	r3, [sp, #72]	; 0x48
  8011be6:	f1c3 0336 	rsb	r3, r3, #54	; 0x36
  8011bea:	e790      	b.n	8011b0e <_dtoa_r+0x62e>
@@ -37676,8 +37676,8 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8011f68:	f000 fa3f 	bl	80123ea <__multadd>
  8011f6c:	9001      	str	r0, [sp, #4]
  8011f6e:	e7ea      	b.n	8011f46 <_dtoa_r+0xa66>
- 8011f70:	08017374 	.word	0x08017374
- 8011f74:	08017398 	.word	0x08017398
+ 8011f70:	08016d90 	.word	0x08016d90
+ 8011f74:	08016db4 	.word	0x08016db4
 
 08011f78 <__sflush_r>:
  8011f78:	898a      	ldrh	r2, [r1, #12]
@@ -37836,9 +37836,9 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  80120c6:	2000      	movs	r0, #0
  80120c8:	bd38      	pop	{r3, r4, r5, pc}
  80120ca:	bf00      	nop
- 80120cc:	080173c8 	.word	0x080173c8
- 80120d0:	080173e8 	.word	0x080173e8
- 80120d4:	080173a8 	.word	0x080173a8
+ 80120cc:	08016de4 	.word	0x08016de4
+ 80120d0:	08016e04 	.word	0x08016e04
+ 80120d4:	08016dc4 	.word	0x08016dc4
 
 080120d8 <std>:
  80120d8:	2300      	movs	r3, #0
@@ -37934,7 +37934,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  80121aa:	2301      	movs	r3, #1
  80121ac:	61a3      	str	r3, [r4, #24]
  80121ae:	bd10      	pop	{r4, pc}
- 80121b0:	08017364 	.word	0x08017364
+ 80121b0:	08016d80 	.word	0x08016d80
  80121b4:	08012121 	.word	0x08012121
 
 080121b8 <__sfp>:
@@ -37983,7 +37983,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8012220:	e9c4 5512 	strd	r5, r5, [r4, #72]	; 0x48
  8012224:	e7e9      	b.n	80121fa <__sfp+0x42>
  8012226:	bf00      	nop
- 8012228:	08017364 	.word	0x08017364
+ 8012228:	08016d80 	.word	0x08016d80
  801222c:	ffff0001 	.word	0xffff0001
 
 08012230 <_fwalk_reent>:
@@ -38487,7 +38487,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  80126cc:	4638      	mov	r0, r7
  80126ce:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
  80126d2:	bf00      	nop
- 80126d4:	080174f8 	.word	0x080174f8
+ 80126d4:	08016f18 	.word	0x08016f18
 
 080126d8 <__lshift>:
  80126d8:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -39013,12 +39013,12 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8012bcc:	f7fe f982 	bl	8010ed4 <_printf_i>
  8012bd0:	e7ec      	b.n	8012bac <_vfiprintf_r+0x1e4>
  8012bd2:	bf00      	nop
- 8012bd4:	080173c8 	.word	0x080173c8
- 8012bd8:	08017504 	.word	0x08017504
- 8012bdc:	080173e8 	.word	0x080173e8
- 8012be0:	080173a8 	.word	0x080173a8
- 8012be4:	0801750a 	.word	0x0801750a
- 8012be8:	0801750e 	.word	0x0801750e
+ 8012bd4:	08016de4 	.word	0x08016de4
+ 8012bd8:	08016f24 	.word	0x08016f24
+ 8012bdc:	08016e04 	.word	0x08016e04
+ 8012be0:	08016dc4 	.word	0x08016dc4
+ 8012be4:	08016f2a 	.word	0x08016f2a
+ 8012be8:	08016f2e 	.word	0x08016f2e
  8012bec:	08010991 	.word	0x08010991
  8012bf0:	080129a3 	.word	0x080129a3
 
@@ -39098,7 +39098,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8012c96:	b103      	cbz	r3, 8012c9a <_write_r+0x1e>
  8012c98:	602b      	str	r3, [r5, #0]
  8012c9a:	bd38      	pop	{r3, r4, r5, pc}
- 8012c9c:	20000e60 	.word	0x20000e60
+ 8012c9c:	20000ddc 	.word	0x20000ddc
 
 08012ca0 <_close_r>:
  8012ca0:	b538      	push	{r3, r4, r5, lr}
@@ -39114,7 +39114,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8012cb6:	b103      	cbz	r3, 8012cba <_close_r+0x1a>
  8012cb8:	602b      	str	r3, [r5, #0]
  8012cba:	bd38      	pop	{r3, r4, r5, pc}
- 8012cbc:	20000e60 	.word	0x20000e60
+ 8012cbc:	20000ddc 	.word	0x20000ddc
 
 08012cc0 <_fstat_r>:
  8012cc0:	b538      	push	{r3, r4, r5, lr}
@@ -39132,7 +39132,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8012cda:	602b      	str	r3, [r5, #0]
  8012cdc:	bd38      	pop	{r3, r4, r5, pc}
  8012cde:	bf00      	nop
- 8012ce0:	20000e60 	.word	0x20000e60
+ 8012ce0:	20000ddc 	.word	0x20000ddc
 
 08012ce4 <_isatty_r>:
  8012ce4:	b538      	push	{r3, r4, r5, lr}
@@ -39148,7 +39148,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8012cfa:	b103      	cbz	r3, 8012cfe <_isatty_r+0x1a>
  8012cfc:	602b      	str	r3, [r5, #0]
  8012cfe:	bd38      	pop	{r3, r4, r5, pc}
- 8012d00:	20000e60 	.word	0x20000e60
+ 8012d00:	20000ddc 	.word	0x20000ddc
 
 08012d04 <_lseek_r>:
  8012d04:	b538      	push	{r3, r4, r5, lr}
@@ -39166,7 +39166,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8012d1e:	b103      	cbz	r3, 8012d22 <_lseek_r+0x1e>
  8012d20:	602b      	str	r3, [r5, #0]
  8012d22:	bd38      	pop	{r3, r4, r5, pc}
- 8012d24:	20000e60 	.word	0x20000e60
+ 8012d24:	20000ddc 	.word	0x20000ddc
 
 08012d28 <__ascii_mbtowc>:
  8012d28:	b082      	sub	sp, #8
@@ -39212,7 +39212,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8012d76:	b103      	cbz	r3, 8012d7a <_read_r+0x1e>
  8012d78:	602b      	str	r3, [r5, #0]
  8012d7a:	bd38      	pop	{r3, r4, r5, pc}
- 8012d7c:	20000e60 	.word	0x20000e60
+ 8012d7c:	20000ddc 	.word	0x20000ddc
 
 08012d80 <__ascii_wctomb>:
  8012d80:	b149      	cbz	r1, 8012d96 <__ascii_wctomb+0x16>
@@ -39412,8 +39412,8 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8012ffc:	bde38e38 	.word	0xbde38e38
  8013000:	be4ccccd 	.word	0xbe4ccccd
  8013004:	401bffff 	.word	0x401bffff
- 8013008:	08017620 	.word	0x08017620
- 801300c:	08017630 	.word	0x08017630
+ 8013008:	08017040 	.word	0x08017040
+ 801300c:	08017050 	.word	0x08017050
 
 08013010 <ceilf>:
  8013010:	ee10 3a10 	vmov	r3, s0
@@ -39831,7 +39831,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  80135b8:	42b17217 	.word	0x42b17217
  80135bc:	c2cff1b4 	.word	0xc2cff1b4
  80135c0:	c2ce8ecf 	.word	0xc2ce8ecf
- 80135c4:	08017640 	.word	0x08017640
+ 80135c4:	08017060 	.word	0x08017060
  80135c8:	00000000 	.word	0x00000000
 
 080135cc <fabsf>:
@@ -39950,7 +39950,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8013720:	e7f9      	b.n	8013716 <logf+0xb6>
  8013722:	bf00      	nop
  8013724:	4b000000 	.word	0x4b000000
- 8013728:	08017788 	.word	0x08017788
+ 8013728:	080171a8 	.word	0x080171a8
  801372c:	00000000 	.word	0x00000000
 
 08013730 <log1pf>:
@@ -40324,9 +40324,9 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8013bd0:	00000000 	.word	0x00000000
  8013bd4:	c062a000 	.word	0xc062a000
  8013bd8:	fefffffe 	.word	0xfefffffe
- 8013bdc:	080178a8 	.word	0x080178a8
+ 8013bdc:	080172c8 	.word	0x080172c8
  8013be0:	4b000000 	.word	0x4b000000
- 8013be4:	08017640 	.word	0x08017640
+ 8013be4:	08017060 	.word	0x08017060
  8013be8:	00000000 	.word	0x00000000
 
 08013bec <roundf>:
@@ -40538,8 +40538,8 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8013e46:	ecbd 8b02 	vpop	{d8}
  8013e4a:	bd10      	pop	{r4, pc}
  8013e4c:	20000898 	.word	0x20000898
- 8013e50:	080179d0 	.word	0x080179d0
- 8013e54:	08017509 	.word	0x08017509
+ 8013e50:	080173f0 	.word	0x080173f0
+ 8013e54:	08016f29 	.word	0x08016f29
 
 08013e58 <acoshf>:
  8013e58:	b500      	push	{lr}
@@ -40593,7 +40593,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8013ee6:	bf00      	nop
 	...
  8013ef0:	20000898 	.word	0x20000898
- 8013ef4:	080179d6 	.word	0x080179d6
+ 8013ef4:	080173f6 	.word	0x080173f6
 
 08013ef8 <asinf>:
  8013ef8:	b510      	push	{r4, lr}
@@ -40650,8 +40650,8 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8013f8e:	ecbd 8b02 	vpop	{d8}
  8013f92:	bd10      	pop	{r4, pc}
  8013f94:	20000898 	.word	0x20000898
- 8013f98:	080179dd 	.word	0x080179dd
- 8013f9c:	08017509 	.word	0x08017509
+ 8013f98:	080173fd 	.word	0x080173fd
+ 8013f9c:	08016f29 	.word	0x08016f29
 
 08013fa0 <atanhf>:
  8013fa0:	b510      	push	{r4, lr}
@@ -40720,7 +40720,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  801405e:	bf00      	nop
 	...
  8014068:	20000898 	.word	0x20000898
- 801406c:	080179e3 	.word	0x080179e3
+ 801406c:	08017403 	.word	0x08017403
 
 08014070 <coshf>:
  8014070:	b510      	push	{r4, lr}
@@ -40781,7 +40781,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8014112:	e7e4      	b.n	80140de <coshf+0x6e>
  8014114:	20000898 	.word	0x20000898
  8014118:	42b2d4fc 	.word	0x42b2d4fc
- 801411c:	080179d7 	.word	0x080179d7
+ 801411c:	080173f7 	.word	0x080173f7
  8014120:	47efffff 	.word	0x47efffff
  8014124:	7ff00000 	.word	0x7ff00000
 
@@ -40842,7 +40842,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  80141c6:	bf00      	nop
 	...
  80141d0:	20000898 	.word	0x20000898
- 80141d4:	080179ea 	.word	0x080179ea
+ 80141d4:	0801740a 	.word	0x0801740a
 
 080141d8 <sinhf>:
  80141d8:	b530      	push	{r4, r5, lr}
@@ -40912,7 +40912,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  80142a0:	00000000 	.word	0x00000000
  80142a4:	fff00000 	.word	0xfff00000
  80142a8:	20000898 	.word	0x20000898
- 80142ac:	080179f0 	.word	0x080179f0
+ 80142ac:	08017410 	.word	0x08017410
 
 080142b0 <__ieee754_acosf>:
  80142b0:	b508      	push	{r3, lr}
@@ -41432,7 +41432,7 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8014976:	4323      	orrs	r3, r4
  8014978:	e796      	b.n	80148a8 <__ieee754_fmodf+0x34>
  801497a:	bf00      	nop
- 801497c:	080179f8 	.word	0x080179f8
+ 801497c:	08017418 	.word	0x08017418
  8014980:	007fffff 	.word	0x007fffff
 
 08014984 <__ieee754_rem_pio2f>:
@@ -41614,11 +41614,11 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  8014bbc:	2e85a308 	.word	0x2e85a308
  8014bc0:	43490f80 	.word	0x43490f80
  8014bc4:	3f22f984 	.word	0x3f22f984
- 8014bc8:	08017a00 	.word	0x08017a00
+ 8014bc8:	08017420 	.word	0x08017420
  8014bcc:	2e85a300 	.word	0x2e85a300
  8014bd0:	248d3132 	.word	0x248d3132
  8014bd4:	43800000 	.word	0x43800000
- 8014bd8:	08017a80 	.word	0x08017a80
+ 8014bd8:	080174a0 	.word	0x080174a0
 
 08014bdc <__ieee754_sinhf>:
  8014bdc:	b510      	push	{r4, lr}
@@ -42020,8 +42020,8 @@ static bool checkreturn pb_enc_fixed_length_bytes(pb_ostream_t *stream, const pb
  801507e:	e7e7      	b.n	8015050 <__kernel_rem_pio2f+0x2d4>
  8015080:	3b01      	subs	r3, #1
  8015082:	e769      	b.n	8014f58 <__kernel_rem_pio2f+0x1dc>
- 8015084:	08017dc4 	.word	0x08017dc4
- 8015088:	08017d98 	.word	0x08017d98
+ 8015084:	080177e4 	.word	0x080177e4
+ 8015088:	080177b8 	.word	0x080177b8
  801508c:	43800000 	.word	0x43800000
  8015090:	3b800000 	.word	0x3b800000
  8015094:	00000000 	.word	0x00000000

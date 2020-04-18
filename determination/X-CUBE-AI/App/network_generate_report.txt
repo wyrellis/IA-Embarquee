@@ -1,56 +1,56 @@
 Neural Network Tools for STM32 v1.2.0 (AI tools v5.0.0)
-Created date       : 2020-04-10 00:30:28
+Created date       : 2020-04-17 19:26:39
 
-Exec/report summary (generate dur=0.478s err=0)
+Exec/report summary (generate dur=0.785s err=0)
 ------------------------------------------------------------------------------------------------------------------------
-model file         : C:\Users\berar\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs\home\kepler\Programming\Python\TensorFlow\pyfiles\voltGraphLearning\reseau.tflite
+model file         : C:\Users\berar\Desktop\GHPAfqlCHMqfQz\reseau.tflite
 type               : tflite (tflite)
 c_name             : network
 compression        : 8
 quantize           : None
 L2r error          : NOT EVALUATED
-workspace dir      : C:\Users\berar\AppData\Local\Temp\mxAI_workspace2040677649679006456685466313706908
+workspace dir      : C:\Users\berar\AppData\Local\Temp\mxAI_workspace1411705982044006358860320277902976
 output dir         : C:\Users\berar\.stm32cubemx\stm32ai_output
 
 model_name         : reseau
-model_hash         : d6debd510b84a8853709aa6ec183271d
+model_hash         : 19572404e4ebc77e7358906c2bfbe813
 input              : input_0 [100 items, 400 B, ai_float, FLOAT32, (100,)]
 input (total)      : 400 B
 output             : nl_3 [3 items, 12 B, ai_float, FLOAT32, (3,)]
 output (total)     : 12 B
-params #           : 3,099 items (12.11 KiB)
-macc               : 3,126
-weights (ro)       : 2,108 (2.06 KiB) (-82.99%) 
-activations (rw)   : 192 (192 B) 
-ram (total)        : 604 (604 B) = 192 + 400 + 12
+params #           : 598 items (2.34 KiB)
+macc               : 625
+weights (ro)       : 604 (604 B) (-74.75%) 
+activations (rw)   : 60 (60 B) 
+ram (total)        : 472 (472 B) = 60 + 400 + 12
 
 ------------------------------------------------------------------------------------------------------------------------
 id  layer (type)        output shape      param #     connected to             macc           rom                
 ------------------------------------------------------------------------------------------------------------------------
 0   input_0 (Input)     (100,)                                                                                   
-    dense_0 (Dense)     (24,)             2,424       input_0                  2,400          1,360 (c)          
-    nl_0 (Nonlinearity) (24,)                         dense_0                  24                                
+    dense_0 (Dense)     (5,)              505         input_0                  500            336 (c)            
+    nl_0 (Nonlinearity) (5,)                          dense_0                  5                                 
 ------------------------------------------------------------------------------------------------------------------------
-1   dense_1 (Dense)     (24,)             600         nl_0                     576            448 (c)            
-    nl_1 (Nonlinearity) (24,)                         dense_1                  24                                
+1   dense_1 (Dense)     (10,)             60          nl_0                     50             136 (c)            
+    nl_1 (Nonlinearity) (10,)                         dense_1                  10                                
 ------------------------------------------------------------------------------------------------------------------------
-2   dense_2 (Dense)     (3,)              75          nl_1                     72             300                
+2   dense_2 (Dense)     (3,)              33          nl_1                     30             132                
 ------------------------------------------------------------------------------------------------------------------------
 3   nl_3 (Nonlinearity) (3,)                          dense_2                  30                                
 ------------------------------------------------------------------------------------------------------------------------
-reseau p=3099(12.11 KBytes) macc=3126 rom=2.06 KBytes (-82.99%) ram=192 B io_ram=412 B
+reseau p=598(2.34 KBytes) macc=625 rom=604 Bytes (-74.75%) ram=60 B io_ram=412 B
 
  
-Complexity per-layer - macc=3,126 rom=2,108
+Complexity per-layer - macc=625 rom=604
 ------------------------------------------------------------------------------------------------------------------------
 id      layer (type)        macc                                    rom                                    
 ------------------------------------------------------------------------------------------------------------------------
-0       dense_0 (Dense)     |||||||||||||||||||||||||||||||  76.8%  |||||||||||||||||||||||||||||||  64.5% 
+0       dense_0 (Dense)     |||||||||||||||||||||||||||||||  80.0%  |||||||||||||||||||||||||||||||  55.6% 
 0       nl_0 (Nonlinearity) |                                 0.8%  |                                 0.0% 
-1       dense_1 (Dense)     ||||||||                         18.4%  ||||||||||                       21.3% 
-1       nl_1 (Nonlinearity) |                                 0.8%  |                                 0.0% 
-2       dense_2 (Dense)     |                                 2.3%  |||||||                          14.2% 
-3       nl_3 (Nonlinearity) |                                 1.0%  |                                 0.0% 
+1       dense_1 (Dense)     ||||                              8.0%  |||||||||||||                    22.5% 
+1       nl_1 (Nonlinearity) |                                 1.6%  |                                 0.0% 
+2       dense_2 (Dense)     ||                                4.8%  ||||||||||||                     21.9% 
+3       nl_3 (Nonlinearity) ||                                4.8%  |                                 0.0% 
 ------------------------------------------------------------------------------------------------------------------------
 
 

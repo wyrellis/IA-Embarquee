@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    network_data.h
   * @author  AST Embedded Analytics Research Platform
-  * @date    Fri Apr 10 00:30:27 2020
+  * @date    Fri Apr 17 19:26:39 2020
   * @brief   AI Tool Automatic Code Generator for Embedded NN computing
   ******************************************************************************
   * @attention
@@ -26,9 +26,9 @@
 
 #define AI_NETWORK_DATA_CONFIG           AI_HANDLE_NULL
 
-#define AI_NETWORK_DATA_ACTIVATIONS_SIZE     (192)
+#define AI_NETWORK_DATA_ACTIVATIONS_SIZE     (60)
 
-#define AI_NETWORK_DATA_WEIGHTS_SIZE         (2108)
+#define AI_NETWORK_DATA_WEIGHTS_SIZE         (604)
 
 #define AI_NETWORK_DATA_ACTIVATIONS(ptr_)  \
   AI_BUFFER_OBJ_INIT( \

@@ -12,9 +12,11 @@ validate_folder_name = 'courbes_cartes_test'
 graph_folder_name = 'images_de_courbes'
 
 # Parameters initialisation
-point_precision = 1024
-global_voltage_max = 20.48
+point_precision = 1023
+global_voltage_max = 20.46
 traceGraphs = False #to create or not a graph for each prepared data
+finalOutput = True # display detailed output
+epochs = 200 # Iterations of learn batch learned to the neural network
 
 # Initalisation of a array with the circuit boards' names
 # Those labels will be used to classify the data
@@ -72,9 +74,17 @@ def batch_create(b_graphs,b_labels,b_size):
 
 # Adds a densely-connected layer with 16 units to the model and
 # a softmax layer with same amount of labels output units:
+
+'''
 model = tf.keras.models.Sequential([
   tf.keras.layers.Dense(24, activation='relu'),
   tf.keras.layers.Dense(24, activation='relu'),
+  tf.keras.layers.Dense(len(labels), activation='sigmoid')
+])'''
+
+model = tf.keras.models.Sequential([
+  tf.keras.layers.Dense(5, activation='relu'),
+  tf.keras.layers.Dense(10, activation='relu'),
   tf.keras.layers.Dense(len(labels), activation='sigmoid')
 ])
 
@@ -132,7 +142,7 @@ for fromBatchTest in valuesBatchTest:
 		save_file.write(struct.pack('f',float(value)))
 
 # Training of the network
-model.fit(valuesBatchTrain, labelsBatchTrain, epochs=60)
+model.fit(valuesBatchTrain, labelsBatchTrain, epochs=epochs)
 
 # Network evaluation
 model.evaluate(valuesBatchTest, labelsBatchTest, verbose=2)
@@ -143,16 +153,16 @@ tflite_model = converter.convert()
 saved_file = open('reseau.tflite','wb')
 saved_file.write(tflite_model)
 
-import time
-
-print("Test with the first ten vectors of the set:")
-for numtest in range(len(valuesBatchTest)):
-	print('Test n'+str(numtest+1))
-	print(model.predict(np.array([valuesBatchTest[numtest]])))
-	print('true label   :'+labels[labelsBatchTest[numtest]])
-	toPredict = np.array([valuesBatchTest[numtest]])
-	print('guessed label:'+labels[np.argmax(model.predict(toPredict))])
-	start = time.time()
-	model.predict(toPredict)
-	end = time.time()
-	print('calculation time:' + str(end - start))
+if (finalOutput):
+	import time
+	print("Detailed neural network output:")
+	for numtest in range(len(valuesBatchTest)):
+		print('Test n'+str(numtest+1))
+		print(model.predict(np.array([valuesBatchTest[numtest]])))
+		print('true label   :'+labels[labelsBatchTest[numtest]])
+		toPredict = np.array([valuesBatchTest[numtest]])
+		start = time.time()
+		res = model.predict(toPredict)
+		end = time.time()
+		print('guessed label:'+labels[np.argmax(res)])
+		print('calculation time:' + str(end - start))

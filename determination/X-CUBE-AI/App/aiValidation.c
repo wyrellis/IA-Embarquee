@@ -685,8 +685,6 @@ void aiValidationDeInit(void)
     printf("bye bye ...\r\n");
 }
 
-// CUSTOM USER CODE - PROJET
-
 void prj_AI_init(void) {
 	aiInit();
 }
@@ -695,14 +693,14 @@ bool prj_AI_process(float p_input[1][1][prj_AI_INPUT_NUMBER], float p_output[1][
 
 	ai_buffer input = {
     	AI_BUFFER_FORMAT_FLOAT,
-		1, 1, 1, 100,
+		1, 1, 1, prj_AI_INPUT_NUMBER,
 		(ai_handle)p_input,
 	NULL
     };
 
     ai_buffer output = {
     	AI_BUFFER_FORMAT_FLOAT,
-    	1, 1, 1, 3,
+    	1, 1, 1, prj_AI_OUTPUT_NUMBER,
 		(ai_handle)p_output,
 	NULL
     };
