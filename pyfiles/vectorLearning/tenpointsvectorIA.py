@@ -14,7 +14,7 @@ def format_vector(vector):
 	return (f_vector/np.max(f_vector)).tolist()
 
 def format_label(label):
-	return (0 if label==labels[0] else 1)
+	return labels.index(label)
 
 # Adds a densely-connected layer with 16 units to the model and
 # a softmax layer with 2 output units:

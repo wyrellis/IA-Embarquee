@@ -1,13 +1,17 @@
 import csv
 import os
+import re
+
+JUMP = 18 #distance between each datum from the initial data of the csv file
+VOLTAGE_THRESHOLD = -1E-8 #threshold for the begining of the selection
+ARRAY_SIZE = 100 #number of points returned with the label
+
+label_index = 0 # Index of labels for returned tuple of getCSVgraphs
+values_index = 1 # Index of graph values for returned tuple of getCSVgraphs
 
 # Return a tuple composed of the label of the circuit board and an array of (100) voltage values
 # Input (string) file paths formated like : "folder_name/label_folder_name/csv_file
 def getCSVgraphs(csv_path):
-	JUMP = 18 #distance between each datum from the initial data of the csv file
-	VOLTAGE_THRESHOLD = -1E-8 #threshold for the begining of the selection
-	ARRAY_SIZE = 100 #number of points returned with the label
-
 	folder_name = csv_path.split('/')[1]
 	label = folder_name.split('-')[0]
 	CSVFile = open(csv_path,'r')
@@ -21,18 +25,11 @@ def getCSVgraphs(csv_path):
 			break
 
 	# the rise of the voltage begins, so only relevant data will be used
-	voltageValues = list()
-	for line in csvFileReader:
-		if len(line) != 2:
-			voltageValues.append(voltageValues[len(voltageValues)-2])
-		else:
-			if line[1] == '':
-				voltageValues.append(0)
-			else:
-				voltageValues.append(float(line[1]))
+	voltageValues = [0 if (len(line) != 2 or line[1] == '') else float(line[1]) for line in csvFileReader]
 
 	# select ARRAY-SIZE number of data to be returned
 	points = list()
+
 	for counter in range(ARRAY_SIZE):
 		point = voltageValues[len(voltageValues) - 1 if counter*JUMP > len(voltageValues) else counter*JUMP]
 		if point < 0:
@@ -51,6 +48,6 @@ def getCSVgraphs(csv_path):
 def readAllCSVfromFolder(folder_name):
 	result = list()
 	for label_folder_name in os.listdir(folder_name):
-		for csv_name in os.listdir(folder_name+'/'+label_folder_name):
+		for csv_name in [file for file in os.listdir(folder_name+'/'+label_folder_name) if re.match(r'^..*\.csv$',file,re.I|re.M)]:
 			result.append(getCSVgraphs(folder_name+'/'+label_folder_name+'/'+csv_name))
 	return result
