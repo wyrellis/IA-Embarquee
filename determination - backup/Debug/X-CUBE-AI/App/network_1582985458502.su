@@ -1,9 +1,0 @@
-network_1582985458502.c:345:9:network_1582985458502_configure_activations	24	static
-network_1582985458502.c:378:9:network_1582985458502_configure_weights	24	static
-network_1582985458502.c:417:9:ai_network_1582985458502_get_info	136	static
-network_1582985458502.c:464:10:ai_network_1582985458502_get_error	16	static
-network_1582985458502.c:470:10:ai_network_1582985458502_create	24	static
-network_1582985458502.c:480:11:ai_network_1582985458502_destroy	16	static
-network_1582985458502.c:486:9:ai_network_1582985458502_init	24	static
-network_1582985458502.c:501:8:ai_network_1582985458502_run	24	static
-network_1582985458502.c:508:8:ai_network_1582985458502_forward	16	static
