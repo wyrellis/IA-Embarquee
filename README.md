@@ -1,8 +1,10 @@
 # Projet2A - IUT Valence
 IA embarquée sur une carte STM32 pour l'entreprise Cari Electronic
 
-Vous trouverez plusieurs ressources utiles ici :
+## Fichiers sources
+Concernant les fichiers sources, le code Python se situe dans le répertoire `pyfiles` et le code concernant le programme de la carte se situe dans  le répertoire `IAEmbarque_ProjetSTM32CubeMX`, c'est le dossier du projet STM32Cube.
 
+## Ressources utiles
 * Rapport du projet :	https://drive.google.com/open?id=1ZgTW3iDWcga8HZ260UgTSIlTPvo74EAq
 * Annexes du projet :	https://drive.google.com/open?id=1emdrNYMeRGXPkoQ9TrrgXrn5u1NSWexP
 
